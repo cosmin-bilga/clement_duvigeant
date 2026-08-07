@@ -15,6 +15,7 @@ function Footer() {
       document.querySelector(".content").classList.remove("hidden");
       document.querySelector(".accueilContent").classList.remove("hidden");
     }
+
     const links = document.querySelectorAll(".active");
     if (links !== null) {
       for (let link of links) {
