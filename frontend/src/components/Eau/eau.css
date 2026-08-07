@@ -1,0 +1,116 @@
+.eau {
+  width: 100%;
+}
+.eau .text {
+  width: calc(100% - 20px);
+}
+.eau .logo {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 6%;
+  margin-bottom: 6%;
+}
+.eau .logo a {
+  width: 30%;
+}
+.eau .logo img {
+  width: 100%;
+}
+.eau .logo .logopac {
+  filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.4745098039));
+  transition: 0.5s;
+}
+.eau .logo .logosol {
+  filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.4745098039));
+  transition: 0.5s;
+}
+.eau .logo .logopac:hover {
+  filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.2588235294));
+  transition: 0.5s;
+  width: 29%;
+}
+.eau .logo .logosol:hover {
+  filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.2588235294));
+  transition: 0.5s;
+  width: 29%;
+}
+.eau .images {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2%;
+  /*@media (max-width: 768px) {
+      flex-direction: column;
+  }*/
+}
+.eau .images .img1 {
+  width: 30%;
+  height: 30vh;
+  border-radius: 10px;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .eau .images .img1 {
+    height: 11vh;
+  }
+}
+.eau .images .img1 img {
+  width: 100%;
+  transition: 4s;
+}
+.eau .images .img1 img:hover {
+  margin-top: -2%;
+  margin-left: -2%;
+  width: 104%;
+  transition: 4s;
+}
+.eau .images .img2 {
+  width: 30%;
+  height: 30vh;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .eau .images .img2 {
+    height: 11vh;
+  }
+}
+.eau .images .img2 img {
+  position: absolute;
+  width: 130%;
+  margin-left: -15%;
+  bottom: -20px;
+  transition: 4s;
+}
+.eau .images .img2 img:hover {
+  margin-top: -15%;
+  margin-left: -17%;
+  width: 134%;
+  transition: 4s;
+}
+.eau .images .img3 {
+  width: 30%;
+  height: 30vh;
+  border-radius: 10px;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .eau .images .img3 {
+    height: 11vh;
+  }
+}
+.eau .images .img3 img {
+  width: 100%;
+  transition: 4s;
+}
+.eau .images .img3 img:hover {
+  margin-top: -2%;
+  margin-left: -2%;
+  width: 104%;
+  transition: 4s;
+}/*# sourceMappingURL=eau.css.map */

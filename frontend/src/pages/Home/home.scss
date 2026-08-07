@@ -1,0 +1,37 @@
+.home {
+    overflow: hidden;
+    padding: 0% 2% 0% 2%;
+    margin: 0;
+    width: 96%;
+    /*.accueilContent{
+        position: relative;
+        padding: 0;
+    }*/
+    .observer{
+        position: absolute;
+        top: 300px;
+    }
+    .text{
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+        //height: 500px;
+    }
+    .section{
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+}
+.hidden{
+    display: none;
+}
+.ancre{
+    position: relative;
+}
+.id{
+    position: absolute;
+    top: -80px;
+    @media (max-width: 768px) {
+        top: -140px;
+    }
+}

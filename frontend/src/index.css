@@ -1,0 +1,61 @@
+html {
+  --res: calc(0.01 * 10vmin) ;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  font-family: "Montserrat";
+  /*-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;*/
+  line-height: 1;
+  background-image: url("https://l-araignee.net/ets-clement-duvigeant/assets/background.webp");
+  background-size: cover;
+  background-attachment: fixed;
+  color: black;
+}
+body h1 {
+  font-size: calc(20 * var(--res));
+}
+@media (max-width: 768px) {
+  body h1 {
+    font-size: calc(40 * var(--res));
+  }
+}
+body h2 {
+  color: white;
+}
+body #google-reviews h2 {
+  color: black;
+}
+body p {
+  font-size: calc(20 * var(--res));
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  body p {
+    font-size: calc(24 * var(--res));
+  }
+}
+body li {
+  font-size: calc(20 * var(--res));
+  font-weight: 500;
+  margin-top: 10px;
+  /*@media (max-width: 768px) {
+      font-size: calc(16 * var(--res));
+  }*/
+}
+@media (max-width: 768px) {
+  body li {
+    font-size: calc(24 * var(--res));
+  }
+}
+@media (min-width: 768px) {
+  body main {
+    margin-bottom: -100px;
+  }
+}
+
+/* {
+    outline: 1px solid red;
+}*//*# sourceMappingURL=index.css.map */

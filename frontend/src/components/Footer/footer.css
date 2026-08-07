@@ -1,0 +1,30 @@
+.footer {
+  background-color: white;
+  bottom: 0;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+.footer .map {
+  border-radius: 10px;
+  width: 30%;
+  height: 150px;
+  border: none;
+  margin: 5px;
+}
+.footer .adresse {
+  margin: 5px;
+}
+.footer .legal {
+  margin: 5px;
+}
+.footer .legal .cgvLink {
+  /*color:#0000FF;
+  text-decoration: underline;*/
+  cursor: pointer;
+}
+.footer p {
+  font-size: calc(20 * var(--res));
+}/*# sourceMappingURL=footer.css.map */

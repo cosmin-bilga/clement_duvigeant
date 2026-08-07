@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/assets/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Ets Clément Duvigeant"
+    />
+
+    <meta name="robots" content="all" />
+	  <meta name="language" content="fr-FR">
+
+	  <meta property="og:site_name" content="Ets Clément Duvigeant" />
+	  <meta property="og:type" content="website" />
+	  <meta property="og:url" content="https://l-araignee.net/ets-clement-duvigeant/" />
+	  <meta property="og:title" content="Ets Clément Duvigeant" />
+	  <meta property="og:description" content="Plomberie, Chauffage, Climatisation à Escoussens" />
+	  <meta property="og:image" content="https://l-araignee.net/ets-clement-duvigeant/assets/slider/7.png" />
+	  <meta name="twitter:card" content="summary_large_image" />
+	  <meta name="twitter:site" content="@monCompteTwitter" />
+	  <meta name="twitter:title" content="Ets Clément Duvigeant" />
+	  <meta name="twitter:description" content="Plomberie, Chauffage, Climatisation à Escoussens" />
+	  <meta name="twitter:image" content="https://l-araignee.net/ets-clement-duvigeant/assets/slider/7.png" />
+	  <meta name="twitter:url" content="https://l-araignee.net/ets-clement-duvigeant/" />
+
+
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+
+      <style>
+        #google-reviews{
+          background-color: #FFF;
+          margin-top: -20px;
+          height: 50px;
+          padding-top: 20px;
+          padding-bottom: 20px;
+        }
+        #hiddenData{
+
+          display: none;
+
+        }
+
+      </style>
+          <script>
+            AOS.init();
+          </script>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Ets Clément Duvigeant</title>
+  </head>
+
+  <body>
+    <div id="hiddenData">
+    <div itemscope="" itemtype="https://schema.org/LocalBusiness">
+      <span itemprop="name">
+        <a
+          href="https://l-araignee.net/ets-clement-duvigeant/"
+          itemprop="Url"
+          title="Ets Clément Duvigeant"
+        >
+          Plomberie, Chauffage, Climatisation à Escoussens
+        </a>
+      </span>
+      <span itemprop="description">
+        Plomberie, Chauffage, Climatisation à Escoussens
+      </span>
+    </div>
+    <div
+      itemprop="address"
+      itemscope=""
+      itemtype="https://schema.org/PostalAddress"
+    >
+      <span itemprop="postalCode">81290</span>
+      <span itemprop="addressLocality">Escoussens</span>
+    </div>
+    <div
+      itemprop="geo"
+      itemscope=""
+      itemtype="https://schema.org/GeoCoordinates"
+    >
+      <meta itemprop="latitude" content="43.500390484875936" />
+      <meta itemprop="longitude" content="2.217018108404431" />
+    </div></div>
+
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+    <!--<div id="google-reviews"> <h2>Avis Google My Business</h2> <script src="https://apis.google.com/js/client.js?onload=loadClient"></script> <script> function loadClient() { gapi.client.init({ apiKey: 'YOUR_API_KEY', discoveryUrl: 'https://mybusiness.googleapis.com/discovery/v4/apis/locations/1.0/rest' }).then(function() { makeRequest(); }, function(error) { console.error('Error initializing Google API Client:', error); }); } function makeRequest() { gapi.client.locations.reviews.list({ placeId: 'YOUR_PLACE_ID' }).then(function(response) { if (response.result.reviews) { displayReviews(response.result.reviews); } else { console.warn('No reviews found for this location.'); } }, function(error) { console.error('Error retrieving reviews:', error); }); } function displayReviews(reviews) { var html = ''; for (var i = 0; i < reviews.length; i++) { var review = reviews[i]; html += '<div class="review">'; html += ' <h3>' + review.authorName + '</h3>'; html += ' <p>' + review.rating + ' étoiles</p>'; html += ' <p>' + review.text + '</p>'; html += '</div>'; } document.getElementById('google-reviews').innerHTML = html; } </script> </div>-->
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

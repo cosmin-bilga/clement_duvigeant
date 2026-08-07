@@ -1,0 +1,202 @@
+.header {
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid black;
+  position: fixed;
+  background-color: white;
+  height: 80px;
+}
+@media (max-width: 768px) {
+  .header {
+    height: 140px;
+  }
+}
+@media (min-width: 768px) {
+  .header {
+    display: flex;
+    flex-direction: row;
+  }
+}
+.header .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .header .top {
+    width: 45%;
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 768px) {
+  .header .top .contact {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .header .top .contact .mail {
+    margin-top: 5px;
+  }
+}
+.header .top .logo {
+  height: 60px;
+  width: 313px;
+  margin: 10px;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .header .top .logo {
+    width: 300%;
+  }
+}
+.header .top .logo a {
+  height: 100%;
+  display: flex;
+  width: 100%;
+}
+.header .top .logo img {
+  max-height: 60px;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.header .top .name {
+  display: none;
+  width: calc(100% - 380 * var(--res));
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  .header .top .name {
+    width: 100%;
+  }
+}
+.header .top .name h1 {
+  margin: 0;
+}
+.header .top .name p {
+  margin: 0;
+}
+.header .top .phone {
+  max-height: 70px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .header .top .phone {
+    display: none;
+  }
+}
+.header .top .phone img {
+  max-height: 70%;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin: auto;
+}
+.header .bottom {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .header .bottom {
+    width: 55%;
+  }
+}
+.header .bottom nav {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.header .bottom nav .button {
+  background-color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  width: calc(25% - 10px);
+  font-weight: bold;
+  height: 40px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 5px;
+  color: black;
+  transition: 1s;
+}
+@media (min-width: 768px) {
+  .header .bottom nav .button {
+    width: calc(19% - 12px);
+  }
+}
+.header .bottom nav .button a div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.header .bottom nav .button.red:hover {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2588235294));
+  transition: 1s;
+  border: 1px solid black;
+}
+.header .bottom nav .button.blue:hover {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2588235294));
+  transition: 1s;
+  border: 1px solid black;
+}
+.header .bottom nav .active.red {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2588235294));
+  color: white;
+  background-color: #F26522;
+  transition: 1s;
+}
+.header .bottom nav .active.blue {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2588235294));
+  background-color: #159EFC;
+  transition: 1s;
+}
+.header .bottom nav .phone {
+  margin: 2.5px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  text-decoration: none;
+  color: black;
+}
+@media (max-width: 768px) {
+  .header .bottom nav .phone {
+    display: none;
+  }
+}
+.header .bottom nav .phone img {
+  margin: auto;
+  max-height: 60%;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.header .bottom nav .phone p {
+  margin: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.header .mail p {
+  font-size: calc(10 * var(--res));
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  .header .mail p {
+    font-size: calc(18 * var(--res));
+  }
+}
+
+.headerField {
+  height: 140px;
+}
+@media (min-width: 768px) {
+  .headerField {
+    height: 80px;
+  }
+}/*# sourceMappingURL=header.css.map */
