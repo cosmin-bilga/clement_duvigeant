@@ -14,11 +14,11 @@ function Home() {
     AOS.init();
   }, []);
 
-  const climatisation = useRef();
-  const chauffage = useRef();
-  const vmc = useRef();
-  const eau = useRef();
-  const accueil = useRef();
+  const climatisation = useRef(null);
+  const chauffage = useRef(null);
+  const vmc = useRef(null);
+  const eau = useRef(null);
+  const accueil = useRef(null);
 
   useEffect(() => {
     const observerClim = new IntersectionObserver((entries) => {
@@ -32,6 +32,7 @@ function Home() {
         document.querySelectorAll(".button")[2].classList.add("active");
       }
     });
+
     observerClim.observe(document.querySelector(".climatisation"));
 
     const observerChauffage = new IntersectionObserver((entries) => {
@@ -45,6 +46,7 @@ function Home() {
         document.querySelectorAll(".button")[3].classList.add("active");
       }
     });
+
     observerChauffage.observe(chauffage.current);
 
     const observerVmc = new IntersectionObserver((entries) => {
@@ -83,8 +85,10 @@ function Home() {
         }
       }
     });
+
     observerAccueil.observe(accueil.current);
   }, []);
+
   return (
     <main>
       <div className="ancre">

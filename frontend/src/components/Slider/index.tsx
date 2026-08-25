@@ -36,6 +36,7 @@ function Slider({ sliders }) {
     if (touchendX > touchstartX + 50)
       document.querySelector(".arrowLeft").click();
   }
+
   setTimeout(() => {
     document
       .querySelector(".sliderField")
@@ -89,7 +90,7 @@ function Slider({ sliders }) {
       previous--;
       previousPrevious--;
       next--;
-      nextNext++;
+      nextNext++; // ????
       if (selected < 0) {
         selected = sortedSlider.length - 1;
       }
@@ -251,10 +252,10 @@ function Slider({ sliders }) {
                 slide.index === 0
                   ? "slMax sl b" + slide.index
                   : slide.index === sortedSlider.length - 1
-                  ? "slMax beforStart sl b" + slide.index
-                  : slide.index === 1
-                  ? "slMax start sl b" + slide.index
-                  : "slMax afterStart sl b" + slide.index
+                    ? "slMax beforStart sl b" + slide.index
+                    : slide.index === 1
+                      ? "slMax start sl b" + slide.index
+                      : "slMax afterStart sl b" + slide.index
               }
               key={slide.index}
             >

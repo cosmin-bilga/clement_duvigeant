@@ -65,12 +65,14 @@
 .header .top .name {
   display: none;
   width: calc(100% - 380 * var(--res));
-  padding: 10px;
 }
 @media (min-width: 768px) {
   .header .top .name {
     width: 100%;
   }
+}
+.header .top .name {
+  padding: 10px;
 }
 .header .top .name h1 {
   margin: 0;
@@ -116,17 +118,19 @@
   cursor: pointer;
   width: calc(25% - 10px);
   font-weight: bold;
+}
+@media (min-width: 768px) {
+  .header .bottom nav .button {
+    width: calc(19% - 12px);
+  }
+}
+.header .bottom nav .button {
   height: 40px;
   text-align: center;
   border-radius: 10px;
   margin: 5px;
   color: black;
   transition: 1s;
-}
-@media (min-width: 768px) {
-  .header .bottom nav .button {
-    width: calc(19% - 12px);
-  }
 }
 .header .bottom nav .button a div {
   display: flex;
@@ -156,6 +160,11 @@
   background-color: #159EFC;
   transition: 1s;
 }
+@media (max-width: 768px) {
+  .header .bottom nav .phone {
+    display: none;
+  }
+}
 .header .bottom nav .phone {
   margin: 2.5px;
   margin-right: 10px;
@@ -164,11 +173,6 @@
   height: 40px;
   text-decoration: none;
   color: black;
-}
-@media (max-width: 768px) {
-  .header .bottom nav .phone {
-    display: none;
-  }
 }
 .header .bottom nav .phone img {
   margin: auto;

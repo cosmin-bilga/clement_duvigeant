@@ -25,14 +25,14 @@
     display: none;
   }
 }
-.climatisation .newBlocMobile {
-  margin-top: 2%;
-}
 @media (min-width: 768px) {
   .climatisation .newBlocMobile {
     flex-direction: row-reverse;
     display: none;
   }
+}
+.climatisation .newBlocMobile {
+  margin-top: 2%;
 }
 .climatisation .newBlocMobile .center {
   display: block;
@@ -57,13 +57,15 @@
   border-radius: 10px;
   height: -moz-fit-content;
   height: fit-content;
-  max-height: 43vw;
-  overflow: hidden;
 }
 @media (max-width: 768px) {
   .climatisation .photoClim {
     max-height: 70vw;
   }
+}
+.climatisation .photoClim {
+  max-height: 43vw;
+  overflow: hidden;
 }
 .climatisation .photoClim img {
   width: 100%;
