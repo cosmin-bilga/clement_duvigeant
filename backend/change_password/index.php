@@ -61,11 +61,7 @@ function modify_password(array $requestData): void
         return;
     }
 
-    echo json_encode([$res]);
-
     if ($res["password"] === "" || password_verify($requestData["password"], $res["password"])) {
-
-        echo json_encode([$requestData['new_password']]);
 
         try {
             $sql = "UPDATE admins SET password = :password WHERE id=:id";
@@ -79,8 +75,6 @@ function modify_password(array $requestData): void
             echo $e->getMessage();
             http_response_code(500);
         }
-
-        //unset($res["password"]);
 
         http_response_code(201);
         echo json_encode(["message" => "Password succesfully changed"]);
