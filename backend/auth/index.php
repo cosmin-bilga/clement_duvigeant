@@ -15,6 +15,8 @@ require_once "../connection.php";
 require_once "../jwt.php";
 
 header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Origin: http://localhost:5173");
+
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
