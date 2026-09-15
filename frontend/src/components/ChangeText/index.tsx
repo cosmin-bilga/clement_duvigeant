@@ -28,16 +28,13 @@ export default function ChangeText({ location, id = null }) {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost/clement_duvigeant/backend/content/",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: formData,
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/content/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      );
+        body: formData,
+      });
 
       const data = await response.json();
 
