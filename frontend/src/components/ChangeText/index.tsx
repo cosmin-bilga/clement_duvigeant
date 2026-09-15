@@ -83,6 +83,15 @@ export default function ChangeText({ location, id = null }) {
 
         <button
           type="button"
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 3 }).run()
+          }
+        >
+          Heading 2
+        </button>
+
+        <button
+          type="button"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
         >
           List
