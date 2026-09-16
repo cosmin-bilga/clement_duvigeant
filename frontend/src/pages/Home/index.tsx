@@ -4,6 +4,7 @@ import Chauffage from "../../components/Chauffage";
 import Vmc from "../../components/Vmc";
 import Eau from "../../components/Eau";
 import Cgv from "../../components/Cgv";
+import { useContent } from "../../contexts/ContentContext";
 import "./home.css";
 import { useEffect, useRef } from "react";
 import AOS from "aos";
@@ -19,6 +20,7 @@ function Home() {
   const vmc = useRef(null);
   const eau = useRef(null);
   const accueil = useRef(null);
+  const content = useContent();
 
   useEffect(() => {
     const observerClim = new IntersectionObserver((entries) => {

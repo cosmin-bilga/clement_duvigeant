@@ -76,7 +76,7 @@ function get_content(): void
         $sql = "SELECT * FROM content";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
-        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         echo $e->getMessage();
         http_response_code(500);
@@ -89,7 +89,7 @@ function get_content(): void
         return;
     }
 
-    echo json_encode(["content" => $res]);
+    echo json_encode([$res]);
 }
 
 function modify_content(): void
