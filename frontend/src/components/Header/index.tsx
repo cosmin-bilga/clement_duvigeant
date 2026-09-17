@@ -85,7 +85,11 @@ function Header() {
             </Link>
           </div>
           <div className="name">
-            <h1>Ets Clément Duvigeant</h1>
+              <h1>Clément Duvigeant – Plomberie, Chauffage et Climatisation</h1>
+ <p>
+    Professionnel agréé dans la région de Castres, avec 15 années
+    d'expérience.
+  </p>
             <p>Evaluation thermique avant travaux</p>
             <p>installations, entretiens et dépannages</p>
           </div>

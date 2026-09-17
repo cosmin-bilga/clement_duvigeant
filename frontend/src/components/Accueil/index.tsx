@@ -44,28 +44,20 @@ function Accueil() {
       french_content: "",
     },
   ];
-
   return (
     <div className="accueil">
       <img
         src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/pompe.jpg"
         className="full"
-        alt="Installation de pompe à chaleur par Clément Duvigeant à Escoussens"
-      />
+        alt="fond"
+      ></img>
+      <div className="onBackground">
+        <div className="text">
 
-      <div className="text">
-        <h1>
-          Clément Duvigeant – Plomberie, Chauffage et Climatisation à Escoussens
-        </h1>
-
-        <p>
-          Professionnel agréé intervenant à Escoussens et dans la région de
-          Castres, avec 15 années d'expérience.
-        </p>
-      </div>
-
-      <div className="Caroussel">
-        <Slider sliders={sliders}></Slider>
+</div>
+        <div className="Caroussel">
+          <Slider sliders={sliders}></Slider>
+        </div>
       </div>
     </div>
   );
