@@ -128,7 +128,7 @@ function get_photos(): void
         $sql = "SELECT * FROM images";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
-        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         echo $e->getMessage();
         http_response_code(500);
@@ -141,7 +141,7 @@ function get_photos(): void
         return;
     }
 
-    echo json_encode(["photos" => $res]);
+    echo json_encode($res);
 }
 
 function modify_photo(): void
