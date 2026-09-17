@@ -20,7 +20,7 @@ function Home() {
   const vmc = useRef(null);
   const eau = useRef(null);
   const accueil = useRef(null);
-  const content = useContent();
+  const { content, photos } = useContent() ?? {};
 
   useEffect(() => {
     const observerClim = new IntersectionObserver((entries) => {
@@ -90,6 +90,8 @@ function Home() {
 
     observerAccueil.observe(accueil.current);
   }, []);
+
+  if (content) console.log(content, photos);
 
   return (
     <main>
