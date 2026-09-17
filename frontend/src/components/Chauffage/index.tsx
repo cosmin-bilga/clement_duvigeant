@@ -1,3 +1,5 @@
+import ChangeText from "../ChangeText";
+import ReplaceImage from "../ReplaceImage";
 import "./chauffage.css";
 
 function Chauffage() {
@@ -38,12 +40,14 @@ function Chauffage() {
               </li>
             </ul>
           </div>
+          <ChangeText location={"homepage"} />
           <div>
             <img
               src="https://l-araignee.net/ets-clement-duvigeant/assets/worker.png"
               className="worker"
               alt="homme de chantier"
             ></img>
+            <ReplaceImage id={5} />
           </div>
         </div>
         <div className="images">
