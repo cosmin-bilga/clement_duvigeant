@@ -41,14 +41,16 @@ function Slider({ sliders }) {
   setTimeout(() => {
     document
       .querySelector(".sliderField")
-      .addEventListener("touchstart", (e) => {
+      ?.addEventListener("touchstart", (e) => {
         touchstartX = e.changedTouches[0].screenX;
       });
 
-    document.querySelector(".sliderField").addEventListener("touchend", (e) => {
-      touchendX = e.changedTouches[0].screenX;
-      checkDirection();
-    });
+    document
+      .querySelector(".sliderField")
+      ?.addEventListener("touchend", (e) => {
+        touchendX = e.changedTouches[0].screenX;
+        checkDirection();
+      });
   }, 500);
 
   // fonction useintervall adapté pour react

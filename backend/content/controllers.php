@@ -56,7 +56,9 @@ function add_content(): void
         ]);
         //$res = $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        echo $e->getMessage();
+        echo json_encode([
+            "message" => $e->getMessage()
+        ]);
         http_response_code(500);
         return;
     }
@@ -89,7 +91,16 @@ function get_content(): void
         return;
     }
 
-    echo json_encode([$res]);
+    $content = [];
+
+    foreach ($res as $item) {
+        $content[$item["location"]] = $item["content"];
+    }
+
+    http_response_code(200);
+    echo json_encode($content);
+
+    // echo json_encode([$res]);
 }
 
 function modify_content(): void

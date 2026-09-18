@@ -4,12 +4,12 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
 
-export default function ChangeText({ location, id = null }) {
+export default function ChangeText({ location, placeholder = "", id = null }) {
   const [content, setContent] = useState("");
 
   const editor = useEditor({
     extensions: [StarterKit],
-    content: "",
+    content: placeholder,
     onUpdate: ({ editor }) => {
       setContent(editor.getHTML());
     },
@@ -23,9 +23,9 @@ export default function ChangeText({ location, id = null }) {
     formData.append("location", location);
     formData.append("content", content);
     if (id) formData.append("id", id);
-    else {
-      formData.append("id", "-1");
-    }
+    else formData.append("id", "-1");
+
+    console.log(formData);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/content/`, {
