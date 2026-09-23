@@ -265,7 +265,7 @@ function Slider({ sliders }) {
               >
                 <img
                   className="carousel-img"
-                  src={slide.picture}
+                  src={slide.url}
                   alt="slider"
                   style={{
                     zIndex: 2,

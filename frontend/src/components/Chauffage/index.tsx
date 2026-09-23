@@ -10,7 +10,7 @@ function Chauffage() {
 
   const isLoggedIn = !!token;
 
-  if (content) console.log("Content", content);
+  //if (content) console.log("Content", content);
   return (
     <div className="chauffage">
       <h2>Chauffage</h2>
@@ -51,53 +51,18 @@ function Chauffage() {
 
           {isLoggedIn ? (
             <ChangeText
-              location={"homepage"}
-              placeholder={
-                content?.["homepage"] ||
-                `
-              <div className="text" data-aos="flip-up" data-aos-duration="2000">
-                <h3>
-                  Présentation de notre service d’installation de chauffage
-                </h3>
-                <p>
-                  Nous mettons notre expertise à votre service pour vous offrir
-                  des installations de chauffage performantes et adaptées à vos
-                  besoins, que ce soit pour le gaz, le fioul, le bois ou les
-                  pompes à chaleur.
-                </p>
-                <strong>Nos Services</strong>
-                <ul>
-                  <li>
-                    Installation de Chauffage au Gaz, Fioul et Bois : Nous
-                    prenons en charge l’installation complète de votre système
-                    de chauffage, de l’étude préalable à la mise en service.
-                  </li>
-                  <li>
-                    Installation de Pompes à Chaleur : Nous installons des
-                    pompes à chaleur performantes et écologiques, adaptées à
-                    votre logement et à vos besoins énergétiques.
-                  </li>
-                  <li>
-                    Entretien et Réparation : Nous proposons des contrats
-                    d’entretien pour prolonger la durée de vie de votre
-                    équipement et des interventions rapides en cas de panne.
-                  </li>
-                  <li>
-                    Conseils Personnalisés : Nos experts sont à votre
-                    disposition pour vous conseiller et vous aider à choisir la
-                    solution la plus adaptée à vos besoins.
-                  </li>
-                </ul>
-              </div>
-            `
-              }
+              location={"homepage.chauffage"}
+              placeholder={content?.["homepage.chauffage"]}
             />
           ) : (
             <div
+              className="text"
+              data-aos="flip-up"
+              data-aos-duration="2000"
               dangerouslySetInnerHTML={{
                 __html:
-                  content?.["homepage"] ||
-                  `<div class="text" data-aos="flip-up" data-aos-duration="2000">
+                  content?.["homepage.chauffage"] ||
+                  `
         <h3>
           Présentation de notre service d’installation de chauffage
         </h3>
@@ -130,7 +95,7 @@ function Chauffage() {
             solution la plus adaptée à vos besoins.
           </li>
         </ul>
-      </div>`,
+      `,
               }}
             />
           )}

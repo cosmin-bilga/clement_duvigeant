@@ -1,49 +1,58 @@
 import Slider from "../Slider";
 import "./accueil.css";
+import { useContent } from "../../contexts/ContentContext";
 
 function Accueil() {
-  const sliders = [
+  const { photos } = useContent() ?? {};
+
+  const sliders = photos
+    ?.filter((photo) => photo.location === "slider")
+    .map((photo) => ({
+      ...photo,
+      url: `${import.meta.env.VITE_API_URL}/uploads/photos/${photo.name}`,
+    })) ?? [
     {
-      picture:
-        "https://l-araignee.net/ets-clement-duvigeant/assets/slider/1.png",
-      french_content: "",
+      id: 1,
+      url: "https://l-araignee.net/ets-clement-duvigeant/assets/slider/1.png",
+      location: "slider",
     },
     {
-      picture:
-        "https://l-araignee.net/ets-clement-duvigeant/assets/slider/2.png",
-      french_content: "",
+      id: 2,
+      url: "https://l-araignee.net/ets-clement-duvigeant/assets/slider/2.png",
+      location: "slider",
     },
     {
-      picture:
-        "https://l-araignee.net/ets-clement-duvigeant/assets/slider/3.png",
-      french_content: "",
+      id: 3,
+      url: "https://l-araignee.net/ets-clement-duvigeant/assets/slider/3.png",
+      location: "slider",
     },
     {
-      picture:
-        "https://l-araignee.net/ets-clement-duvigeant/assets/slider/4.png",
-      french_content: "",
+      id: 4,
+      url: "https://l-araignee.net/ets-clement-duvigeant/assets/slider/4.png",
+      location: "slider",
     },
     {
-      picture:
-        "https://l-araignee.net/ets-clement-duvigeant/assets/slider/5.png",
-      french_content: "",
+      id: 5,
+      url: "https://l-araignee.net/ets-clement-duvigeant/assets/slider/5.png",
+      location: "slider",
     },
     {
-      picture:
-        "https://l-araignee.net/ets-clement-duvigeant/assets/slider/6.png",
-      french_content: "",
+      id: 6,
+      url: "https://l-araignee.net/ets-clement-duvigeant/assets/slider/6.png",
+      location: "slider",
     },
     {
-      picture:
-        "https://l-araignee.net/ets-clement-duvigeant/assets/slider/7.png",
-      french_content: "",
+      id: 7,
+      url: "https://l-araignee.net/ets-clement-duvigeant/assets/slider/7.png",
+      location: "slider",
     },
     {
-      picture:
-        "https://l-araignee.net/ets-clement-duvigeant/assets/slider/8.png",
-      french_content: "",
+      id: 8,
+      url: "https://l-araignee.net/ets-clement-duvigeant/assets/slider/8.png",
+      location: "slider",
     },
   ];
+
   return (
     <div className="accueil">
       <img
@@ -52,9 +61,7 @@ function Accueil() {
         alt="fond"
       ></img>
       <div className="onBackground">
-        <div className="text">
-
-</div>
+        <div className="text"></div>
         <div className="Caroussel">
           <Slider sliders={sliders}></Slider>
         </div>

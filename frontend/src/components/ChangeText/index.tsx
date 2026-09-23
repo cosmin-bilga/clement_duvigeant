@@ -2,7 +2,7 @@
 
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ChangeText({ location, placeholder = "", id = null }) {
   const [content, setContent] = useState("");
@@ -15,6 +15,12 @@ export default function ChangeText({ location, placeholder = "", id = null }) {
     },
   });
 
+  useEffect(() => {
+    if (editor && placeholder) {
+      editor.commands.setContent(placeholder);
+    }
+  }, [editor, placeholder]);
+
   const submitContent = async (e) => {
     e.preventDefault();
 
@@ -25,7 +31,7 @@ export default function ChangeText({ location, placeholder = "", id = null }) {
     if (id) formData.append("id", id);
     else formData.append("id", "-1");
 
-    console.log(formData);
+    // console.log(formData);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/content/`, {
@@ -42,7 +48,7 @@ export default function ChangeText({ location, placeholder = "", id = null }) {
         throw new Error(data.message || "Upload failed");
       }
 
-      console.log(data);
+      //console.log(data);
     } catch (error) {
       console.error(error);
     }
