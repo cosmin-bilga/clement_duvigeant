@@ -245,6 +245,28 @@ function Slider({ sliders }) {
       }, 1000);
     }
   };
+
+  const removeImage = async (id) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ id: id }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Photo deletion failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className="sliderField sliderContainer">
@@ -271,6 +293,12 @@ function Slider({ sliders }) {
                     zIndex: 2,
                   }}
                 />
+                <button
+                  onClick={() => removeImage(slide.id)}
+                  className="remove-button"
+                >
+                  Supprimer
+                </button>
               </div>
             );
           })}

@@ -1,8 +1,30 @@
 import "./eau.css";
+import { useContent } from "../../contexts/ContentContext";
+import ChangeText from "../ChangeText";
 
 function Eau() {
+  const { content, photos } = useContent();
+
+  const token = localStorage.getItem("token");
+
+  const isLoggedIn = !!token;
+
   return (
     <div className="eau">
+      {isLoggedIn ? (
+        <ChangeText
+          location={"homepage.eau"}
+          placeholder={content?.["homepage.eau"]}
+        />
+      ) : (
+        <div
+          className="eau"
+          data-aos="fade-left"
+          data-aos-duration="2000"
+          dangerouslySetInnerHTML={{
+            __html:
+              content?.["homepage.eau"] ||
+              `
       <h2>Eau chaude</h2>
       <div className="text" data-aos="fade-up" data-aos-duration="2000">
         <h3>Nos Services</h3>
@@ -28,7 +50,10 @@ function Eau() {
             chauffage de l’eau fiable et performante.
           </li>
         </ul>
-      </div>
+      </div>`,
+          }}
+        />
+      )}
       <div className="images">
         <div className="img1" data-aos="fade-right" data-aos-duration="2000">
           <img

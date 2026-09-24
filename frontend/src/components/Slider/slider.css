@@ -27,6 +27,9 @@
 }
 .sliderContainer .slMax {
   min-width: 100dvw;
+  /* :has(.remove-button:hover) {
+    outline: 2px solid blue;
+  } */
 }
 .sliderContainer .carousel-img {
   -o-object-fit: contain;
@@ -35,6 +38,12 @@
   width: 40%;
   border-radius: 10px;
   transition: 1s;
+}
+.sliderContainer .remove-button {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .sliderContainer .sliderContent {
   color: white;
@@ -69,7 +78,7 @@
   z-index: 3;
   bottom: -61px;
   font-size: 18px;
-  color: #FFF;
+  color: #fff;
   padding: 10px;
   border-radius: 20px;
   display: flex;

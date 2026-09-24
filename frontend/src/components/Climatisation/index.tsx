@@ -1,10 +1,17 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
-
+import { useContent } from "../../contexts/ContentContext";
 import "./climatisation.css";
+import ChangeText from "../ChangeText";
 
 function Climatisation() {
+  const { content, photos } = useContent();
+
+  const token = localStorage.getItem("token");
+
+  const isLoggedIn = !!token;
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -34,62 +41,81 @@ function Climatisation() {
         </div>
 
         <div className="column">
-          <div className="text" data-aos="fade-left" data-aos-duration="2000">
-            <h3>
-              Présentation de notre service d’installation de climatisations
-            </h3>
-            <p>
-              Bienvenue chez ets Clément Duvigeant, votre expert en solutions de
-              climatisation à Esscouens. Forts de notre expérience et de notre
-              savoir-faire, nous nous engageons à vous offrir des installations
-              de climatisation de haute qualité, adaptées à vos besoins
-              spécifiques.
-            </p>
-            <strong>Pourquoi choisir ets Clément Duvigeant ?</strong>
-            <ul>
-              <li>
-                Expertise et Professionnalisme : Nos techniciens qualifiés
-                possèdent une vaste expérience dans l’installation de systèmes
-                de climatisation. Nous assurons un service rapide, efficace et
-                respectueux des normes de sécurité.
-              </li>
-              <li>
-                Solutions Personnalisées : Chaque espace est unique. C’est
-                pourquoi nous proposons des solutions sur mesure, adaptées à vos
-                exigences et à votre budget. Que ce soit pour une maison, un
-                bureau ou un commerce, nous avons la solution idéale pour vous.
-              </li>
-              <li>
-                Produits de Qualité : Nous travaillons avec les meilleures
-                marques du marché pour garantir des performances optimales et
-                une durabilité accrue. Nos systèmes de climatisation sont à la
-                pointe de la technologie, offrant confort et économies
-                d’énergie.
-              </li>
-              <li>
-                Service Après-Vente : Votre satisfaction est notre priorité.
-                Nous offrons un service après-vente réactif et des contrats
-                d’entretien pour assurer le bon fonctionnement de votre
-                climatisation tout au long de l’année. Nos Services
-              </li>
-              <li>
-                Installation de Climatisations : Nous prenons en charge
-                l’installation complète de votre système de climatisation, de
-                l’étude préalable à la mise en service.
-              </li>
-              <li>
-                Entretien et Réparation : Nous proposons des contrats
-                d’entretien pour prolonger la durée de vie de votre équipement
-                et des interventions rapides en cas de panne.
-              </li>
-              <li>
-                Conseils Personnalisés : Nos experts sont à votre disposition
-                pour vous conseiller et vous aider à choisir la solution la plus
-                adaptée à vos besoins.
-              </li>
-            </ul>
-            <strong className="center">Contactez-nous dès aujourd’hui !</strong>
-          </div>
+          {isLoggedIn ? (
+            <ChangeText
+              location={"homepage.climatisation"}
+              placeholder={content?.["homepage.climatisation"]}
+            />
+          ) : (
+            <div
+              className="text"
+              data-aos="fade-left"
+              data-aos-duration="2000"
+              dangerouslySetInnerHTML={{
+                __html:
+                  content?.["homepage.climatisation"] ||
+                  `
+              <h3>
+                Présentation de notre service d’installation de climatisations
+              </h3>
+              <p>
+                Bienvenue chez ets Clément Duvigeant, votre expert en solutions
+                de climatisation à Esscouens. Forts de notre expérience et de
+                notre savoir-faire, nous nous engageons à vous offrir des
+                installations de climatisation de haute qualité, adaptées à vos
+                besoins spécifiques.
+              </p>
+              <strong>Pourquoi choisir ets Clément Duvigeant ?</strong>
+              <ul>
+                <li>
+                  Expertise et Professionnalisme : Nos techniciens qualifiés
+                  possèdent une vaste expérience dans l’installation de systèmes
+                  de climatisation. Nous assurons un service rapide, efficace et
+                  respectueux des normes de sécurité.
+                </li>
+                <li>
+                  Solutions Personnalisées : Chaque espace est unique. C’est
+                  pourquoi nous proposons des solutions sur mesure, adaptées à
+                  vos exigences et à votre budget. Que ce soit pour une maison,
+                  un bureau ou un commerce, nous avons la solution idéale pour
+                  vous.
+                </li>
+                <li>
+                  Produits de Qualité : Nous travaillons avec les meilleures
+                  marques du marché pour garantir des performances optimales et
+                  une durabilité accrue. Nos systèmes de climatisation sont à la
+                  pointe de la technologie, offrant confort et économies
+                  d’énergie.
+                </li>
+                <li>
+                  Service Après-Vente : Votre satisfaction est notre priorité.
+                  Nous offrons un service après-vente réactif et des contrats
+                  d’entretien pour assurer le bon fonctionnement de votre
+                  climatisation tout au long de l’année. Nos Services
+                </li>
+                <li>
+                  Installation de Climatisations : Nous prenons en charge
+                  l’installation complète de votre système de climatisation, de
+                  l’étude préalable à la mise en service.
+                </li>
+                <li>
+                  Entretien et Réparation : Nous proposons des contrats
+                  d’entretien pour prolonger la durée de vie de votre équipement
+                  et des interventions rapides en cas de panne.
+                </li>
+                <li>
+                  Conseils Personnalisés : Nos experts sont à votre disposition
+                  pour vous conseiller et vous aider à choisir la solution la
+                  plus adaptée à vos besoins.
+                </li>
+              </ul>
+              <strong className="center">
+                Contactez-nous dès aujourd’hui !
+              </strong>
+            </div>`,
+              }}
+            />
+          )}
           <div className="logoMax">
             <a
               href="https://www.qualit-enr.org/qualifications/qualisol/"
