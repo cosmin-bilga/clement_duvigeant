@@ -1,12 +1,33 @@
 import "./vmc.css";
+import { useContent } from "../../contexts/ContentContext";
+import ChangeText from "../ChangeText";
 
 function Vmc() {
+  const { content, photos } = useContent();
+
+  const token = localStorage.getItem("token");
+
+  const isLoggedIn = !!token;
+
   return (
     <div className="vmc">
       <h2>Ventilation Mécanique Contrôlée</h2>
       <div className="content">
         <div className="left">
-          <div className="text" data-aos="fade-right" data-aos-duration="2000">
+          {isLoggedIn ? (
+            <ChangeText
+              location={"homepage.vmc"}
+              placeholder={content?.["homepage.vmc"]}
+            />
+          ) : (
+            <div
+              className="text"
+              data-aos="fade-right"
+              data-aos-duration="2000"
+              dangerouslySetInnerHTML={{
+                __html:
+                  content?.["homepage.vmc"] ||
+                  `
             <h3>Nos Services</h3>
             <p>
               Améliorez la qualité de l’air et le confort de votre habitation.
@@ -39,7 +60,10 @@ function Vmc() {
                 adaptée à vos besoins.
               </li>
             </ul>
-          </div>
+          `,
+              }}
+            />
+          )}
           <div className="logo" data-aos="fade-up" data-aos-duration="2000">
             <a
               href="https://www.qualit-enr.org/qualifications/ventilation-plus/"

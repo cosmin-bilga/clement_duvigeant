@@ -267,6 +267,8 @@ function Slider({ sliders }) {
     }
   };
 
+  const isConnected = !!localStorage.getItem("token");
+
   return (
     <>
       <div className="sliderField sliderContainer">
@@ -293,12 +295,14 @@ function Slider({ sliders }) {
                     zIndex: 2,
                   }}
                 />
-                <button
+                {isConnected
+                  ? `<button
                   onClick={() => removeImage(slide.id)}
                   className="remove-button"
                 >
                   Supprimer
-                </button>
+                </button>`
+                  : null}
               </div>
             );
           })}
@@ -353,7 +357,7 @@ function Slider({ sliders }) {
           ""
         )}
       </div>
-      <AddImage location={"slider"} />
+      {isConnected ? `<AddImage location={"slider"} />` : null}
     </>
   );
 }

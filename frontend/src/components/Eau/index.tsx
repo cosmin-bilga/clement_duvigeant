@@ -11,6 +11,7 @@ function Eau() {
 
   return (
     <div className="eau">
+      <h2>Eau chaude</h2>
       {isLoggedIn ? (
         <ChangeText
           location={"homepage.eau"}
@@ -25,8 +26,6 @@ function Eau() {
             __html:
               content?.["homepage.eau"] ||
               `
-      <h2>Eau chaude</h2>
-      <div className="text" data-aos="fade-up" data-aos-duration="2000">
         <h3>Nos Services</h3>
         <p>
           Nos systèmes de chauffage de l’eau sont à la pointe de la technologie,
@@ -50,7 +49,7 @@ function Eau() {
             chauffage de l’eau fiable et performante.
           </li>
         </ul>
-      </div>`,
+      `,
           }}
         />
       )}
