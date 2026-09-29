@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useContent } from "../../contexts/ContentContext";
 import "./climatisation.css";
 import ChangeText from "../ChangeText";
+import ReplaceImage from "../ReplaceImage";
 
 function Climatisation() {
   const { content, photos } = useContent();
@@ -22,9 +23,20 @@ function Climatisation() {
         <div className="mobile" data-aos="fade-right" data-aos-duration="2000">
           <div className="photoClim">
             <img
-              src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/clim.jpg"
+              src={
+                photos?.["climatisation.main"]
+                  ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["climatisation.main"].name}`
+                  : "https://l-araignee.net/ets-clement-duvigeant/assets/photos/clim.jpg"
+              }
               alt="climatisation"
             ></img>
+            {isLoggedIn && photos?.["climatisation.main"] && (
+              <ReplaceImage id={photos["climatisation.main"].id} />
+            )}
+            {/*  <img
+              src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/clim.jpg"
+              alt="climatisation"
+            ></img> */}
           </div>
           <a
             tabIndex={-1}
@@ -126,10 +138,22 @@ function Climatisation() {
               data-aos-duration="2000"
             >
               <img
-                src="https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
+                src={
+                  photos?.["climatisation.logo2"]
+                    ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["climatisation.logo2"].name}`
+                    : "https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
+                }
                 alt="logo rge ventilation"
                 className="logoVentilation"
               ></img>
+              {isLoggedIn && photos?.["climatisation.logo2"] && (
+                <ReplaceImage id={photos["climatisation.logo2"].id} />
+              )}
+              {/*   <img
+                src="https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
+                alt="logo rge ventilation"
+                className="logoVentilation"
+              ></img> */}
             </a>
             <a
               href="https://www.socotec.fr//"
@@ -140,10 +164,22 @@ function Climatisation() {
               data-aos-duration="2000"
             >
               <img
-                src="https://l-araignee.net/ets-clement-duvigeant/assets/socotec.png"
+                src={
+                  photos?.["climatisation.logo3"]
+                    ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["climatisation.logo3"].name}`
+                    : "https://l-araignee.net/ets-clement-duvigeant/assets/socotec.png"
+                }
                 alt="logo socotec"
                 className="socotec"
               ></img>
+              {isLoggedIn && photos?.["climatisation.logo3"] && (
+                <ReplaceImage id={photos["climatisation.logo3"].id} />
+              )}
+              {/*  <img
+                src="https://l-araignee.net/ets-clement-duvigeant/assets/socotec.png"
+                alt="logo socotec"
+                className="socotec"
+              ></img> */}
             </a>
           </div>
         </div>

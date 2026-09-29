@@ -13,9 +13,12 @@ type PhotoItem = {
   name: string;
 };
 
+type Photos = Record<string, PhotoItem>;
+
 type ContentContextType = {
   content: ContentItem[] | null;
-  photos: PhotoItem[] | null;
+  photos: Photos | null;
+  slider: PhotoItem[];
 };
 
 type ContentProviderProps = {
@@ -30,7 +33,8 @@ export const useContent = () => {
 
 export const ContentProvider = ({ children }: ContentProviderProps) => {
   const [content, setContent] = useState<ContentItem[] | null>(null);
-  const [photos, setPhotos] = useState<PhotoItem[] | null>(null);
+  const [photos, setPhotos] = useState<Photos | null>(null);
+  const [slider, setSlider] = useState<PhotoItem[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,8 +57,20 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
           photosResponse.json(),
         ]);
 
+        const regularPhotos: Photos = {};
+        const sliderPhotos: PhotoItem[] = [];
+
+        photosData.forEach((photo: PhotoItem) => {
+          if (photo.location === "slider") {
+            sliderPhotos.push(photo);
+          } else {
+            regularPhotos[photo.location] = photo;
+          }
+        });
+
+        setPhotos(regularPhotos);
+        setSlider(sliderPhotos);
         setContent(contentData);
-        setPhotos(photosData);
 
         localStorage.setItem(
           "content",
@@ -68,7 +84,15 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
           "photos",
           JSON.stringify({
             storedExpiration: Date.now() + 100000000,
-            storedContent: photosData,
+            storedContent: regularPhotos,
+          }),
+        );
+
+        localStorage.setItem(
+          "slider",
+          JSON.stringify({
+            storedExpiration: Date.now() + 100000000,
+            storedContent: sliderPhotos,
           }),
         );
       } catch (err) {
@@ -80,7 +104,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   }, []);
 
   return (
-    <ContentContext.Provider value={{ content, photos }}>
+    <ContentContext.Provider value={{ content, photos, slider }}>
       {children}
     </ContentContext.Provider>
   );

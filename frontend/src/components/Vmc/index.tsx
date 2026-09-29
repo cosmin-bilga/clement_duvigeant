@@ -1,6 +1,7 @@
 import "./vmc.css";
 import { useContent } from "../../contexts/ContentContext";
 import ChangeText from "../ChangeText";
+import ReplaceImage from "../ReplaceImage";
 
 function Vmc() {
   const { content, photos } = useContent();
@@ -72,20 +73,44 @@ function Vmc() {
               className="logoVentilationLink"
             >
               <img
-                src="https://l-araignee.net/ets-clement-duvigeant/assets/ventilation.png"
+                src={
+                  photos?.["vmc.logo"]
+                    ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["vmc.logo"].name}`
+                    : "https://l-araignee.net/ets-clement-duvigeant/assets/ventilation.png"
+                }
                 alt="logo rge ventilation"
                 className="logoVentilation"
               ></img>
+              {isLoggedIn && photos?.["vmc.logo"] && (
+                <ReplaceImage id={photos["vmc.logo"].id} />
+              )}
+              {/*   <img
+                src="https://l-araignee.net/ets-clement-duvigeant/assets/ventilation.png"
+                alt="logo rge ventilation"
+                className="logoVentilation"
+              ></img> */}
             </a>
           </div>
         </div>
         <div className="image" data-aos="fade-left" data-aos-duration="2000">
           <div className="sdb">
             <img
-              src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/sdb.jpg"
+              src={
+                photos?.["vmc.main"]
+                  ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["vmc.main"].name}`
+                  : "https://l-araignee.net/ets-clement-duvigeant/assets/photos/sdb.jpg"
+              }
               alt="salle de bain"
               className="img"
             ></img>
+            {isLoggedIn && photos?.["vmc.main"] && (
+              <ReplaceImage id={photos["vmc.main"].id} />
+            )}
+            {/*  <img
+              src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/sdb.jpg"
+              alt="salle de bain"
+              className="img"
+            ></img> */}
           </div>
           <a
             href="https://www.qualit-enr.org/qualifications/ventilation-plus/"

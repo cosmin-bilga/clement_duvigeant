@@ -91,8 +91,6 @@ function Home() {
     observerAccueil.observe(accueil.current);
   }, []);
 
-  if (content) console.log(content, photos);
-
   return (
     <main>
       <div className="ancre">

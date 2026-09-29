@@ -3,14 +3,12 @@ import "./accueil.css";
 import { useContent } from "../../contexts/ContentContext";
 
 function Accueil() {
-  const { photos } = useContent() ?? {};
+  const { slider } = useContent() ?? {};
 
-  const sliders = photos
-    ?.filter((photo) => photo.location === "slider")
-    .map((photo) => ({
-      ...photo,
-      url: `${import.meta.env.VITE_API_URL}/uploads/photos/${photo.name}`,
-    })) ?? [
+  const sliders = slider?.map((photo) => ({
+    ...photo,
+    url: `${import.meta.env.VITE_API_URL}/uploads/photos/${photo.name}`,
+  })) ?? [
     {
       id: 1,
       url: "https://l-araignee.net/ets-clement-duvigeant/assets/slider/1.png",

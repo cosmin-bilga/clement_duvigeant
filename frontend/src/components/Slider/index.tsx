@@ -295,14 +295,14 @@ function Slider({ sliders }) {
                     zIndex: 2,
                   }}
                 />
-                {isConnected
-                  ? `<button
-                  onClick={() => removeImage(slide.id)}
-                  className="remove-button"
-                >
-                  Supprimer
-                </button>`
-                  : null}
+                {isConnected ? (
+                  <button
+                    onClick={() => removeImage(slide.id)}
+                    className="remove-button"
+                  >
+                    Supprimer
+                  </button>
+                ) : null}
               </div>
             );
           })}
@@ -357,7 +357,7 @@ function Slider({ sliders }) {
           ""
         )}
       </div>
-      {isConnected ? `<AddImage location={"slider"} />` : null}
+      {isConnected ? <AddImage location={"slider"} /> : null}
     </>
   );
 }
