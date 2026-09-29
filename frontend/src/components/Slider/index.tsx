@@ -247,6 +247,8 @@ function Slider({ sliders }) {
   };
 
   const removeImage = async (id) => {
+    console.log("SUPPRESSION TEMPORAIREMENT DESACCTIVEE", id);
+    return;
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/`, {
         method: "DELETE",

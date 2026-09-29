@@ -42,8 +42,9 @@
 .sliderContainer .remove-button {
   background-color: white;
   position: absolute;
-  top: 0;
+  top: -10px;
   right: 0;
+  z-index: 10;
 }
 .sliderContainer .sliderContent {
   color: white;
