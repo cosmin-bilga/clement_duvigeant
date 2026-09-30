@@ -164,8 +164,14 @@ function modify_photo(): void
 
     if ($file["error"] !== UPLOAD_ERR_OK) {
         http_response_code(400);
+        if ($file["error"] === 1 || $file["error"] === 2) {
+            echo json_encode([
+                "message" => "File too big. Try with a smaller file",
+            ]);
+            return;
+        }
         echo json_encode([
-            "message" => "Upload failed"
+            "message" => "Upload failed",
         ]);
         return;
     }

@@ -146,15 +146,16 @@ function Climatisation() {
                 alt="logo rge ventilation"
                 className="logoVentilation"
               ></img>
-              {isLoggedIn && photos?.["climatisation.logo2"] && (
-                <ReplaceImage id={photos["climatisation.logo2"].id} />
-              )}
+
               {/*   <img
                 src="https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
                 alt="logo rge ventilation"
                 className="logoVentilation"
               ></img> */}
             </a>
+            {isLoggedIn && photos?.["climatisation.logo2"] && (
+              <ReplaceImage id={photos["climatisation.logo2"].id} />
+            )}
             <a
               href="https://www.socotec.fr//"
               target="_blank"
@@ -172,15 +173,16 @@ function Climatisation() {
                 alt="logo socotec"
                 className="socotec"
               ></img>
-              {isLoggedIn && photos?.["climatisation.logo3"] && (
-                <ReplaceImage id={photos["climatisation.logo3"].id} />
-              )}
+
               {/*  <img
                 src="https://l-araignee.net/ets-clement-duvigeant/assets/socotec.png"
                 alt="logo socotec"
                 className="socotec"
               ></img> */}
             </a>
+            {isLoggedIn && photos?.["climatisation.logo3"] && (
+              <ReplaceImage id={photos["climatisation.logo3"].id} />
+            )}
           </div>
         </div>
       </div>

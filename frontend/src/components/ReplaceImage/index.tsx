@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./replaceimage.css";
 
 export default function ReplaceImage({ id }) {
   const [open, setOpen] = useState(false);
@@ -49,12 +50,12 @@ export default function ReplaceImage({ id }) {
   };
 
   return (
-    <>
-      <button onClick={handleFormChange}>Remplacer Image</button>
-      <form>
+    <div className="replace-menu">
+      {/* <button onClick={handleFormChange}>Remplacer Image</button> */}
+      <form className="replace-form">
         <input type="file" onChange={handleFileChange}></input>
         <input type="submit" value={"Remplacer"} onClick={submitImage}></input>
       </form>
-    </>
+    </div>
   );
 }
