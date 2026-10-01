@@ -1,8 +1,60 @@
-.replace-form {
+/* .replace-form {
   position: relative;
   z-index: 10;
 }
 
 .replace-menu {
   width: 100%;
+} */
+
+.replace-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 13px;
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .replace-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    background: #fff;
+    color: #333;
+
+    cursor: pointer;
+    font-size: 13px;
+
+    transition: 0.2s;
+  }
+
+  .replace-button:hover {
+    background: #f2f2f2;
+  }
+
+  .confirm-replace {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #2e7d32;
+    color: white;
+
+    cursor: pointer;
+  }
 }
