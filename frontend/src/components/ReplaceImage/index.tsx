@@ -2,16 +2,11 @@ import { useState } from "react";
 import "./replaceimage.css";
 
 export default function ReplaceImage({ id }) {
-  /*  const [open, setOpen] = useState(false); */
   const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
-
-  /* const handleFormChange = (e) => {
-    setOpen(!open);
-  }; */
 
   const submitImage = async (e) => {
     e.preventDefault();
@@ -48,16 +43,6 @@ export default function ReplaceImage({ id }) {
       console.error(error);
     }
   };
-
-  /* return (
-    <div className="replace-menu">
-      <button onClick={handleFormChange}>Remplacer Image</button>
-      <form className="replace-form">
-        <input type="file" onChange={handleFileChange}></input>
-        <input type="submit" value={"Remplacer"} onClick={submitImage}></input>
-      </form>
-    </div>
-  ); */
 
   return (
     <div className="replace-menu">
