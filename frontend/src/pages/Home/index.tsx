@@ -8,7 +8,7 @@ import "./home.css";
 import { useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import HomeSlider from "../../components/HomeSlider"
 function Home() {
   useEffect(() => {
     AOS.init();
@@ -107,7 +107,9 @@ function Home() {
           <div className="section">
             <Chauffage></Chauffage>
           </div>
-
+          <div className="test">
+          <HomeSlider/>
+        </div>
           <div className="ancre">
             <span id="climatisation" className="id"></span>
             <span className="observer climatisation" ref={climatisation}></span>
@@ -135,6 +137,7 @@ function Home() {
             <Vmc></Vmc>
           </div>
         </div>
+        
         <div className="cgv hidden">
           <div className="ancre">
             <span id="cgv" className="id"></span>
