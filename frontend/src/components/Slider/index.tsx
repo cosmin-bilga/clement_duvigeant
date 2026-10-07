@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./slider.css";
+import AddImage from "../AddImage";
 
 function Slider({ sliders }) {
   //au cas ou il n'y ai que deux items dans le slider
@@ -40,14 +41,16 @@ function Slider({ sliders }) {
   setTimeout(() => {
     document
       .querySelector(".sliderField")
-      .addEventListener("touchstart", (e) => {
+      ?.addEventListener("touchstart", (e) => {
         touchstartX = e.changedTouches[0].screenX;
       });
 
-    document.querySelector(".sliderField").addEventListener("touchend", (e) => {
-      touchendX = e.changedTouches[0].screenX;
-      checkDirection();
-    });
+    document
+      .querySelector(".sliderField")
+      ?.addEventListener("touchend", (e) => {
+        touchendX = e.changedTouches[0].screenX;
+        checkDirection();
+      });
   }, 500);
 
   // fonction useintervall adapté pour react
@@ -242,85 +245,122 @@ function Slider({ sliders }) {
       }, 1000);
     }
   };
+
+  const removeImage = async (id) => {
+    console.log("SUPPRESSION TEMPORAIREMENT DESACCTIVEE", id);
+    return;
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ id: id }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Photo deletion failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const isConnected = !!localStorage.getItem("token");
+
   return (
-    <div className="sliderField sliderContainer">
-      <div className="inner">
-        {sortedSlider.map((slide) => {
-          return (
-            <div
-              className={
-                slide.index === 0
-                  ? "slMax sl b" + slide.index
-                  : slide.index === sortedSlider.length - 1
-                    ? "slMax beforStart sl b" + slide.index
-                    : slide.index === 1
-                      ? "slMax start sl b" + slide.index
-                      : "slMax afterStart sl b" + slide.index
-              }
-              key={slide.index}
+    <>
+      <div className="sliderField sliderContainer">
+        <div className="inner">
+          {sortedSlider.map((slide) => {
+            return (
+              <div
+                className={
+                  slide.index === 0
+                    ? "slMax sl b" + slide.index
+                    : slide.index === sortedSlider.length - 1
+                      ? "slMax beforStart sl b" + slide.index
+                      : slide.index === 1
+                        ? "slMax start sl b" + slide.index
+                        : "slMax afterStart sl b" + slide.index
+                }
+                key={slide.index}
+              >
+                <img
+                  className="carousel-img"
+                  src={slide.url}
+                  alt="slider"
+                  style={{
+                    zIndex: 2,
+                  }}
+                />
+                {isConnected ? (
+                  <button
+                    onClick={() => removeImage(slide.id)}
+                    className="remove-button"
+                  >
+                    Supprimer
+                  </button>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+        {sortedSlider.length > 1 ? (
+          <div className="arrowAndCounter">
+            <button
+              tabIndex={0}
+              className="buttonArrow arrowLeft"
+              onClick={previousPicture}
             >
               <img
-                className="carousel-img"
-                src={slide.picture}
-                alt="slider"
-                style={{
-                  zIndex: 2,
-                }}
-              />
-            </div>
-          );
-        })}
+                className="leftArrow"
+                src="https://l-araignee.net/ets-clement-duvigeant/assets/arrow_left.png"
+                alt="fleche vers la gauche"
+              ></img>
+            </button>
+            <button
+              tabIndex={0}
+              className="buttonArrow arrowRight"
+              onClick={nextPicture}
+            >
+              <img
+                className="rightArrow"
+                src="https://l-araignee.net/ets-clement-duvigeant/assets/arrow_right.png"
+                alt="fleche vers la droite"
+              ></img>
+            </button>
+            {sortedSlider.length === 2 ? (
+              <div className="counter">
+                <div className="dot dotSelected d0"></div>
+                <div className="dot d1"></div>
+              </div>
+            ) : (
+              <div className="counter">
+                {sortedSlider.map((dot) => {
+                  return (
+                    <div
+                      key={dot.index}
+                      className={
+                        dot.index === 0
+                          ? "dot dotSelected d" + dot.index
+                          : "dot d" + dot.index
+                      }
+                    ></div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
-      {sortedSlider.length > 1 ? (
-        <div className="arrowAndCounter">
-          <button
-            tabIndex={0}
-            className="buttonArrow arrowLeft"
-            onClick={previousPicture}
-          >
-            <img
-              className="leftArrow"
-              src="https://l-araignee.net/ets-clement-duvigeant/assets/arrow_left.png"
-              alt="fleche vers la gauche"
-            ></img>
-          </button>
-          <button
-            tabIndex={0}
-            className="buttonArrow arrowRight"
-            onClick={nextPicture}
-          >
-            <img
-              className="rightArrow"
-              src="https://l-araignee.net/ets-clement-duvigeant/assets/arrow_right.png"
-              alt="fleche vers la droite"
-            ></img>
-          </button>
-          {sortedSlider.length === 2 ? (
-            <div className="counter">
-              <div className="dot dotSelected d0"></div>
-              <div className="dot d1"></div>
-            </div>
-          ) : (
-            <div className="counter">
-              {sortedSlider.map((dot) => {
-                return (
-                  <div
-                    key={dot.index}
-                    className={
-                      dot.index === 0
-                        ? "dot dotSelected d" + dot.index
-                        : "dot d" + dot.index
-                    }
-                  ></div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      ) : (
-        ""
-      )}
-    </div>
+      {isConnected ? <AddImage location={"slider"} /> : null}
+    </>
   );
 }
 

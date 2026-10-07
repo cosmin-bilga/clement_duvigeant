@@ -1,10 +1,32 @@
 import "./eau.css";
+import { useContent } from "../../contexts/ContentContext";
+import ChangeText from "../ChangeText";
+import ReplaceImage from "../ReplaceImage";
 
 function Eau() {
+  const { content, photos } = useContent();
+
+  const token = localStorage.getItem("token");
+
+  const isLoggedIn = !!token;
+
   return (
     <div className="eau">
       <h2>Eau chaude</h2>
-      <div className="text" data-aos="fade-up" data-aos-duration="2000">
+      {isLoggedIn ? (
+        <ChangeText
+          location={"homepage.eau"}
+          placeholder={content?.["homepage.eau"]}
+        />
+      ) : (
+        <div
+          className="text"
+          data-aos="fade-left"
+          data-aos-duration="2000"
+          dangerouslySetInnerHTML={{
+            __html:
+              content?.["homepage.eau"] ||
+              `
         <h3>Nos Services</h3>
         <p>
           Nos systèmes de chauffage de l’eau sont à la pointe de la technologie,
@@ -29,13 +51,29 @@ function Eau() {
           </li>
         </ul>
       </div>
+      `,
+          }}
+        />
+      )}
       <div className="images">
         <div className="img1" data-aos="fade-right" data-aos-duration="2000">
           <img
-            src="https://l-araignee.net/ets-clement-duvigeant/assets/slider/2.png"
+            src={
+              photos?.["eau.main1"]
+                ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["eau.main1"].name}`
+                : "https://l-araignee.net/ets-clement-duvigeant/assets/slider/2.png"
+            }
             alt="ballon d'eau chaude"
           ></img>
+
+          {/* <img
+            src="https://l-araignee.net/ets-clement-duvigeant/assets/slider/2.png"
+            alt="ballon d'eau chaude"
+          ></img> */}
         </div>
+        {isLoggedIn && photos?.["eau.main1"] && (
+          <ReplaceImage id={photos["eau.main1"].id} />
+        )}
         <div
           className="img2"
           data-aos="fade-right"
@@ -43,10 +81,22 @@ function Eau() {
           data-aos-delay="300"
         >
           <img
-            src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/bain.jpg"
+            src={
+              photos?.["eau.main2"]
+                ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["eau.main2"].name}`
+                : "https://l-araignee.net/ets-clement-duvigeant/assets/photos/bain.jpg"
+            }
             alt="baignoire"
           ></img>
+
+          {/*  <img
+            src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/bain.jpg"
+            alt="baignoire"
+          ></img> */}
         </div>
+        {isLoggedIn && photos?.["eau.main2"] && (
+          <ReplaceImage id={photos["eau.main2"].id} />
+        )}
         <div
           className="img3"
           data-aos="fade-right"
@@ -54,10 +104,22 @@ function Eau() {
           data-aos-delay="600"
         >
           <img
-            src="https://l-araignee.net/ets-clement-duvigeant/assets/slider/7.png"
+            src={
+              photos?.["eau.main3"]
+                ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["eau.main3"].name}`
+                : "https://l-araignee.net/ets-clement-duvigeant/assets/slider/7.png"
+            }
             alt="panneau solaire"
           ></img>
+
+          {/*  <img
+            src="https://l-araignee.net/ets-clement-duvigeant/assets/slider/7.png"
+            alt="panneau solaire"
+          ></img> */}
         </div>
+        {isLoggedIn && photos?.["eau.main3"] && (
+          <ReplaceImage id={photos["eau.main3"].id} />
+        )}
       </div>
       <div className="logo" data-aos="fade-left" data-aos-duration="2000">
         <a
@@ -67,10 +129,21 @@ function Eau() {
           className="logopac"
         >
           <img
-            src="https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
+            src={
+              photos?.["eau.logo1"]
+                ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["eau.logo1"].name}`
+                : "https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
+            }
             alt="logo rge qualipac"
           ></img>
+          {/* <img
+            src="https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
+            alt="logo rge qualipac"
+          ></img> */}
         </a>
+        {isLoggedIn && photos?.["eau.logo1"] && (
+          <ReplaceImage id={photos["eau.logo1"].id} />
+        )}
         <a
           href="https://www.qualit-enr.org/qualifications/qualisol/"
           target="_blank"
@@ -78,10 +151,21 @@ function Eau() {
           className="logosol"
         >
           <img
-            src="https://l-araignee.net/ets-clement-duvigeant/assets/qualisol.png"
+            src={
+              photos?.["eau.logo2"]
+                ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["eau.logo2"].name}`
+                : "https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
+            }
             alt="logo rge qualisol"
           ></img>
+          {/*  <img
+            src="https://l-araignee.net/ets-clement-duvigeant/assets/qualisol.png"
+            alt="logo rge qualisol"
+          ></img> */}
         </a>
+        {isLoggedIn && photos?.["eau.logo2"] && (
+          <ReplaceImage id={photos["eau.logo2"].id} />
+        )}
       </div>
     </div>
   );

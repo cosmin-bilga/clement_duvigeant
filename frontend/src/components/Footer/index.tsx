@@ -4,8 +4,8 @@ import "./footer.css";
 function Footer() {
   function cgv() {
     if (
-      !document.querySelector(".cgv").className.includes("hidden") ||
-      document.querySelector(".cgv") !== null
+      document.querySelector(".cgv") !== null ||
+      !document.querySelector(".cgv").className.includes("hidden")
     ) {
       document.querySelector(".content").classList.add("hidden");
       document.querySelector(".accueilContent").classList.add("hidden");
@@ -23,6 +23,7 @@ function Footer() {
       }
     }
   }
+
   return (
     <div className="footer">
       <iframe
@@ -51,16 +52,16 @@ function Footer() {
         </a>
       </div>
       <div className="legal">
-        <Link to="cgv" smooth="true">
-          <p
-            className="cgvLink"
-            onClick={() => cgv()}
-            tabIndex={0}
-            onKeyDown={() => cgv()}
-          >
-            Mentions legales et C.G.V
-          </p>
-        </Link>
+        {/* <Link to="cgv" smooth="true"> */}
+        <p
+          className="cgvLink"
+          onClick={() => cgv()}
+          tabIndex={0}
+          onKeyDown={() => cgv()}
+        >
+          Mentions legales et C.G.V
+        </p>
+        {/*  </Link> */}
 
         <a
           href="https://fr.freepik.com/"

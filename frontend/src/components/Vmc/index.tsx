@@ -1,12 +1,34 @@
 import "./vmc.css";
+import { useContent } from "../../contexts/ContentContext";
+import ChangeText from "../ChangeText";
+import ReplaceImage from "../ReplaceImage";
 
 function Vmc() {
+  const { content, photos } = useContent();
+
+  const token = localStorage.getItem("token");
+
+  const isLoggedIn = !!token;
+
   return (
     <div className="vmc">
       <h2>Ventilation Mécanique Contrôlée</h2>
       <div className="content">
         <div className="left">
-          <div className="text" data-aos="fade-right" data-aos-duration="2000">
+          {isLoggedIn ? (
+            <ChangeText
+              location={"homepage.vmc"}
+              placeholder={content?.["homepage.vmc"]}
+            />
+          ) : (
+            <div
+              className="text"
+              data-aos="fade-right"
+              data-aos-duration="2000"
+              dangerouslySetInnerHTML={{
+                __html:
+                  content?.["homepage.vmc"] ||
+                  `
             <h3>Nos Services</h3>
             <p>
               Améliorez la qualité de l’air et le confort de votre habitation.
@@ -39,7 +61,10 @@ function Vmc() {
                 adaptée à vos besoins.
               </li>
             </ul>
-          </div>
+          `,
+              }}
+            />
+          )}
           <div className="logo" data-aos="fade-up" data-aos-duration="2000">
             <a
               href="https://www.qualit-enr.org/qualifications/ventilation-plus/"
@@ -48,20 +73,44 @@ function Vmc() {
               className="logoVentilationLink"
             >
               <img
-                src="https://l-araignee.net/ets-clement-duvigeant/assets/ventilation.png"
+                src={
+                  photos?.["vmc.logo"]
+                    ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["vmc.logo"].name}`
+                    : "https://l-araignee.net/ets-clement-duvigeant/assets/ventilation.png"
+                }
                 alt="logo rge ventilation"
                 className="logoVentilation"
               ></img>
+              {isLoggedIn && photos?.["vmc.logo"] && (
+                <ReplaceImage id={photos["vmc.logo"].id} />
+              )}
+              {/*   <img
+                src="https://l-araignee.net/ets-clement-duvigeant/assets/ventilation.png"
+                alt="logo rge ventilation"
+                className="logoVentilation"
+              ></img> */}
             </a>
           </div>
         </div>
         <div className="image" data-aos="fade-left" data-aos-duration="2000">
           <div className="sdb">
             <img
-              src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/sdb.jpg"
+              src={
+                photos?.["vmc.main"]
+                  ? `${import.meta.env.VITE_API_URL}/uploads/photos/${photos["vmc.main"].name}`
+                  : "https://l-araignee.net/ets-clement-duvigeant/assets/photos/sdb.jpg"
+              }
               alt="salle de bain"
               className="img"
             ></img>
+            {isLoggedIn && photos?.["vmc.main"] && (
+              <ReplaceImage id={photos["vmc.main"].id} />
+            )}
+            {/*  <img
+              src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/sdb.jpg"
+              alt="salle de bain"
+              className="img"
+            ></img> */}
           </div>
           <a
             href="https://www.qualit-enr.org/qualifications/ventilation-plus/"
