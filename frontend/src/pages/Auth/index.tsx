@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import "./auth.css";
 
 export default function Auth() {
   const [email, setEmail] = useState("admin@admin.fr");
@@ -38,22 +39,24 @@ export default function Auth() {
   };
 
   return (
-    <form>
-      <label htmlFor="email">Email:</label>
-      <input
-        type="email"
-        name="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label htmlFor="password">Password:</label>
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      {/*    <label htmlFor="new_password">New password:</label>
+    <div className="auth-container">
+      <h1>Connexion</h1>
+      <form className="auth-form">
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="password">Mot de passe:</label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {/*    <label htmlFor="new_password">New password:</label>
       <input type="password" name="new_password" placeholder="New Password" />
       <label htmlFor="confirm_password">New password:</label>
       <input
@@ -61,7 +64,13 @@ export default function Auth() {
         name="confirm_password"
         placeholder="Confirm Password"
       /> */}
-      <input type="submit" value="Connexion" onClick={handle_login}></input>
-    </form>
+        <input
+          type="submit"
+          className="connexion-button"
+          value="Se connecter"
+          onClick={handle_login}
+        ></input>
+      </form>
+    </div>
   );
 }
