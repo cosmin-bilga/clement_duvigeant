@@ -1,4 +1,4 @@
-import Slider from "../Slider";
+import PhotoSlider from "../PhotoSlider";
 import "./accueil.css";
 import { useContent } from "../../contexts/ContentContext";
 
@@ -61,7 +61,7 @@ function Accueil() {
       <div className="onBackground">
         <div className="text"></div>
         <div className="Caroussel">
-          <Slider sliders={sliders}></Slider>
+          <PhotoSlider sliders={sliders}></PhotoSlider>
         </div>
       </div>
     </div>

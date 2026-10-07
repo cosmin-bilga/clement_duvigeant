@@ -1,4 +1,6 @@
 .product-card {
+  ---bg-color: white;
+  --dark-color: black;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--dark-color);
@@ -21,5 +23,22 @@
 @media screen and (aspect-ratio > 2.6/1) {
   .product-card {
     height: 72.8lvh;
+  }
+}
+
+.carousel-img {
+  height: 31.2vw;
+  background-color: white;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media screen and (aspect-ratio > 1/1) {
+  .carousel-img {
+    height: 18vw;
+  }
+}
+@media screen and (aspect-ratio > 2.6/1) {
+  .carousel-img {
+    height: 31.2lvh;
   }
 }/*# sourceMappingURL=index.css.map */
