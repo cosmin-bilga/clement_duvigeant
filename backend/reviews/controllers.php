@@ -2,18 +2,6 @@
 
 declare(strict_types=1);
 
-/* BDD
-ID -> PK, int
-Review ID -> string
-user_name -> string
-date -> string/timestamp
-rating -> int
-snippet -> text
-status -> enum (approved, pending, refused)
-user_link -> string
-user_thumbail -> string 
- */
-
 require_once "../connection.php";
 require_once "../jwt.php";
 
@@ -94,7 +82,6 @@ function update_reviews($data): void
         }
     }
 
-
     http_response_code(201);
 
     echo json_encode([
@@ -118,12 +105,6 @@ function get_reviews(): void
         return;
     }
 
-    /* if (!$res) {
-        http_response_code(401); // CONNECTION REFUSED
-        echo json_encode(["message" => "Error"]);
-        return;
-    } */
-
     http_response_code(200);
     echo json_encode($res);
 }
@@ -131,10 +112,10 @@ function get_reviews(): void
 function modify_review_status($review_id, $data): void
 {
 
-    if (!isset($data['status'])) {
+    if (!isset($data['status']) || !in_array($data["status"], ["rejected", "approved", "pending"])) {
         http_response_code(400);
         echo json_encode([
-            "message" => "Photo id does not exist"
+            "message" => "Status not set or invalid (approved, pending or rejected)"
         ]);
         return;
     } else {
@@ -150,7 +131,6 @@ function modify_review_status($review_id, $data): void
             ":status" => $status,
             ":id" => $review_id
         ]);
-        // $res = $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(["message" => $e->getMessage()]);
@@ -161,63 +141,5 @@ function modify_review_status($review_id, $data): void
 
     echo json_encode([
         "message" => "Review updated"
-    ]);
-}
-
-function delete_photo(int $id)
-{
-
-    // AUTHENTICATION
-    $userId = null;
-    if (isset($_SERVER["HTTP_AUTHORIZATION"]))
-        $userId = Auth::validate(explode(" ", $_SERVER["HTTP_AUTHORIZATION"])[1])->sub;
-
-    if (!$userId) {
-        http_response_code(401);
-        echo json_encode([
-            "message" => "You must be logged in"
-        ]);
-        return;
-    }
-
-    $conn = Connection::getConnection();
-
-    try {
-        $sql = "SELECT * from images WHERE id=:id";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([
-            ":id" => $id
-        ]);
-        $res = $stmt->fetch(PDO::FETCH_ASSOC);
-        $oldFilename = "";
-        if ($res)
-            $oldFilename = $res["name"];
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        http_response_code(500);
-        return;
-    }
-
-    try {
-        $sql = "DELETE FROM images WHERE id=:id";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([
-            ":id" => $id
-        ]);
-        $res = $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        http_response_code(500);
-        return;
-    }
-
-    if ($oldFilename != "" && file_exists(__DIR__ . "/../uploads/photos/" . $oldFilename)) {
-        unlink(__DIR__ . "/../uploads/photos/" . $oldFilename);
-    }
-
-    http_response_code(200);
-
-    echo json_encode([
-        "message" => "Photo deleted",
     ]);
 }
