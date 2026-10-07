@@ -1,21 +1,37 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./cgv.css";
+import ReplaceImage from "../ReplaceImage";
 import { useEffect } from "react";
+import { useContent } from "../../contexts/ContentContext";
 
 function Cgv() {
+  const { content, photos, slider } = useContent();
+
+  const token = localStorage.getItem("token");
+
+  const isLoggedIn = !!token;
+
   useEffect(() => {
     AOS.init();
   }, []);
+
   return (
     <div className="cgv">
       <section>
         <h2>Mentions legales</h2>
+        {/*  {isLoggedIn ? (
+                  <ChangeText
+                    location={"cgv1"}
+                    placeholder={content?.["cgv1"]}
+                  />
+                ) : (  */}
         <div
           className="text"
           data-aos="fade-left"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
+          /*      dangerouslySetInnerHTML={ */
         >
           <strong>Editeur</strong>
           <p>EI Clément Duvigeant</p>
