@@ -5,12 +5,12 @@ export default function Card(
     
 ){
     if(review){
-        
-    }
-    return(
+        return(
         <div className="product-card">
             <p>{review.id}</p>
             <p>{review.snippet}</p>
         </div>
     )
+    }
+    
 }
