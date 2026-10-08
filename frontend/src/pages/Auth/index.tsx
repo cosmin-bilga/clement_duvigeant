@@ -8,6 +8,25 @@ export default function Auth() {
 
   const navigate = useNavigate();
 
+  const get_reviews = async () => {  
+
+    try {
+      const response = await fetch(
+        "https://serpapi.com/search.json?engine=google_maps_reviews&data_id=0x12ae15152d746de1:0x9292b5f1e813a3c&hl=en",        
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error with reviews");
+      }
+
+      console.log("Données récupérées:", data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handle_login = async (e) => {
     e.preventDefault();
 
@@ -32,6 +51,7 @@ export default function Auth() {
 
       console.log("Logged in:", data);
       localStorage.setItem("token", data.token);
+      get_reviews();
       navigate("/");
     } catch (error) {
       console.error(error);

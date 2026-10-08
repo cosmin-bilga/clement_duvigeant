@@ -15,6 +15,28 @@ export default function HomeSlider() {
   const [cooldown, setCooldown] = useState(false);
   const touchStartX = useRef(0);
 
+  const handleTest = () => {
+    alert("Hello World !")
+  }
+
+  // const get_reviews = async () => {  
+
+  //   try {
+  //     const response = await fetch(
+  //       "https://serpapi.com/search.json?engine=google_maps_reviews&data_id=0x12ae15152d746de1:0x9292b5f1e813a3c&hl=en",        
+  //     );
+
+  //     const data = await response.json();
+
+  //     if (!response.ok) {
+  //       throw new Error(data.error || "Error with reviews");
+  //     }
+
+  //     console.log("Données récupérées:", data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   
 
   const sortedSlider = useMemo(() => {
@@ -121,6 +143,7 @@ export default function HomeSlider() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
+      
       <div className="inner">
         {sortedSlider.map((item) => {
           const { className, style } = getSlideProps(item.sliderIndex);
@@ -131,7 +154,7 @@ export default function HomeSlider() {
           );
         })}
       </div>
-
+        
       {length > 1 && (
         <div className="arrowAndCounter">
           <button
@@ -172,7 +195,9 @@ export default function HomeSlider() {
               />
             ))}
           </div>
+          <button className="test" onClick={handleTest}>Test</button>
         </div>
+        
       )}
       <p>Hello world !</p>
     </div>
