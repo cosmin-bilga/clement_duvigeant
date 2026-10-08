@@ -8,15 +8,14 @@ export default function Auth() {
 
   const navigate = useNavigate();
 
-  const get_reviews = async () => {
+  const refresh_reviews = async () => {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/serp/`);
 
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error || "Error with reviews");
+      throw new Error(data.error || "Error refreshing reviews");
     }
-    console.log(response);
   };
 
   const handle_login = async (e) => {
@@ -43,7 +42,7 @@ export default function Auth() {
 
       console.log("Logged in:", data);
       localStorage.setItem("token", data.token);
-      get_reviews();
+      refresh_reviews();
       navigate("/");
     } catch (error) {
       console.error(error);

@@ -63,7 +63,7 @@ foreach ($reviews as $review) {
         $stmt->execute([
             ":review_id" => $review["review_id"],
             ":user_name" => $review["user"]["name"],
-            ":date" => "2026-10-05",
+            ":date" => explode('T', $review['iso_date'])[0],
             ":rating" => $review["rating"],
             ":snippet" => $review["snippet"],
             ":status" => "pending",
