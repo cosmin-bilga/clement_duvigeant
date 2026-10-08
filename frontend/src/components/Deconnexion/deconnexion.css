@@ -1,6 +1,10 @@
 .disconnect-button {
-  width: 80%;
+  min-width: 200px;
   position: fixed;
   z-index: 10;
-  bottom: 0;
+  bottom: 10px;
+  right: 10px;
+  background-color: red;
+  padding: 1vw;
+  font-size: 2vw;
 }/*# sourceMappingURL=deconnexion.css.map */
