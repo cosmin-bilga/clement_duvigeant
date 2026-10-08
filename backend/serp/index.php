@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once "../connection.php";
 
 use Dotenv\Dotenv;
 
@@ -29,7 +30,56 @@ if ($response === false) {
     exit;
 }
 
-$data = json_decode($response, true);
+$reviews = json_decode($response, true)["reviews"];
 
-echo json_encode($data['reviews']);
-http_response_code(200);
+$conn = Connection::getConnection();
+
+if (!$reviews || gettype($reviews) !== "array") {
+    http_response_code(400);
+    echo json_encode([
+        "message" => "Reviews missing or wrong format"
+    ]);
+    return;
+}
+
+foreach ($reviews as $review) {
+    try {
+        $sql = "SELECT * FROM reviews WHERE review_id=:review_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            ":review_id" => $review["review_id"]
+        ]);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($res) // stop when a review that is in the DB is found (only add the recent one)
+            break;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        http_response_code(500);
+        return;
+    }
+    try {
+        $sql = "INSERT INTO reviews (review_id, user_name, date, rating, snippet, status, user_link, user_thumbnail) VALUES (:review_id, :user_name, :date, :rating, :snippet, :status, :user_link, :user_thumbnail)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            ":review_id" => $review["review_id"],
+            ":user_name" => $review["user"]["name"],
+            ":date" => "2026-10-05",
+            ":rating" => $review["rating"],
+            ":snippet" => $review["snippet"],
+            ":status" => "pending",
+            ":user_link" => $review["user"]["link"],
+            ":user_thumbnail" => $review["user"]["thumbnail"]
+        ]);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        http_response_code(500);
+        return;
+    }
+}
+
+http_response_code(201);
+
+echo json_encode([
+    "message" => "Reviews updated",
+]);

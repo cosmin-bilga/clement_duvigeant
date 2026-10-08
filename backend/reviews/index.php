@@ -23,8 +23,7 @@ switch ($method) {
         break;
 
     case "POST":
-        $data = json_decode(file_get_contents("php://input"), true);
-        update_reviews($data);
+        modify_review_status();
         break;
 
     default:
