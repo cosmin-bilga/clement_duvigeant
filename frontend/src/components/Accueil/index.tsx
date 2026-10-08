@@ -59,7 +59,17 @@ function Accueil() {
         alt="fond"
       ></img> */}
       <div className="onBackground">
-        <div className="text"></div>
+        <div className="text">
+          <strong>Plomberie, Chauffage, Climatisation</strong>
+          <br></br>
+
+          <strong>Dans la region de Castres</strong>
+          <br></br>
+          <strong>par un professionel agrée</strong>
+          <br></br>
+          <strong>avec 15 années d'experiences.</strong>
+          <br></br>
+        </div>
         <div className="Caroussel">
           <PhotoSlider sliders={sliders}></PhotoSlider>
         </div>

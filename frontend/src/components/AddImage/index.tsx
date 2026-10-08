@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./index.css";
 
 export default function AddImage({ location }) {
   const [open, setOpen] = useState(false);
@@ -49,12 +50,19 @@ export default function AddImage({ location }) {
   };
 
   return (
-    <>
-      <button onClick={handleFormChange}>+</button>
-      <form>
-        <input type="file" onChange={handleFileChange}></input>
+    <form className="add-photo-form">
+      <input
+        type="file"
+        onChange={handleFileChange}
+        name="file-upload"
+        id="file-upload"
+      ></input>
+      <label htmlFor="file-upload" id="custom-file-upload">
+        {file ? "Fichier selectionné: " + file.name : "Choisir une photo"}
+      </label>
+      {file && (
         <input type="submit" value={"Ajouter"} onClick={submitImage}></input>
-      </form>
-    </>
+      )}
+    </form>
   );
 }
