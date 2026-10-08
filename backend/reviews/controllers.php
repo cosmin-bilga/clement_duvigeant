@@ -91,18 +91,37 @@ function update_reviews($data): void
 
 function get_reviews(): void
 {
+    $status = null;
+
+    if (isset($_GET["status"]))
+        $status = $_GET["status"];
 
     $conn = Connection::getConnection();
 
-    try {
-        $sql = "SELECT * FROM reviews";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        http_response_code(500);
-        echo json_encode(["message" => $e->getMessage()]);
-        return;
+    if ($status) {
+        try {
+            $sql = "SELECT * FROM reviews WHERE status=:status";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([
+                ":status" => $status
+            ]);
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            http_response_code(500);
+            echo json_encode(["message" => $e->getMessage()]);
+            return;
+        }
+    } else {
+        try {
+            $sql = "SELECT * FROM reviews";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            http_response_code(500);
+            echo json_encode(["message" => $e->getMessage()]);
+            return;
+        }
     }
 
     http_response_code(200);
