@@ -53,11 +53,11 @@ function Accueil() {
 
   return (
     <div className="accueil">
-      <img
+      {/*  <img
         src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/pompe.jpg"
         className="full"
         alt="fond"
-      ></img>
+      ></img> */}
       <div className="onBackground">
         <div className="text"></div>
         <div className="Caroussel">

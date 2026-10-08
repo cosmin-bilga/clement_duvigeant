@@ -6,6 +6,7 @@ import arrowRight from "./arrow_right.png";
 import { useEffect, useMemo, useRef, useState } from "react";
 //import sliders from "../../assets/review.json";
 import Card from "../Card/Review";
+import AddImage from "../AddImage";
 
 export default function PhotoSlider({ sliders }) {
   //const { list, loading } = useEffect((state) => state.spotlight);
@@ -117,65 +118,70 @@ export default function PhotoSlider({ sliders }) {
   const dotCount = isOriginallyTwoItems ? 2 : length;
   const activeDotIndex = isOriginallyTwoItems ? selected % 2 : selected;
 
+  const isConnected = !!localStorage.getItem("token");
+
   return (
-    <div
-      className="sliderField sliderContainer"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
-      <div className="inner">
-        {sortedSlider.map((item) => {
-          const { className, style } = getSlideProps(item.sliderIndex);
-          return (
-            <div key={item.id} className={className} style={style}>
-              <Card photo={item} review={null} />
-            </div>
-          );
-        })}
-      </div>
-
-      {length > 1 && (
-        <div className="arrowAndCounter">
-          <button
-            type="button"
-            tabIndex={0}
-            className={`buttonArrow arrowLeft ${cooldown ? "cooldown" : ""}`}
-            onClick={previousPicture}
-            aria-label="Diapositive précédente"
-          >
-            <img
-              className="leftArrow"
-              src={arrowLeft}
-              alt="flèche vers la gauche"
-            />
-          </button>
-
-          <button
-            type="button"
-            tabIndex={0}
-            className={`buttonArrow arrowRight ${cooldown ? "cooldown" : ""}`}
-            onClick={nextPicture}
-            aria-label="Diapositive suivante"
-          >
-            <img
-              className="rightArrow"
-              src={arrowRight}
-              alt="flèche vers la droite"
-            />
-          </button>
-
-          <div className="counter">
-            {Array.from({ length: dotCount }).map((_, dotIndex) => (
-              <div
-                key={dotIndex}
-                className={`dot d${dotIndex} ${
-                  dotIndex === activeDotIndex ? "dotSelected" : ""
-                }`}
-              />
-            ))}
-          </div>
+    <>
+      {isConnected ? <AddImage location={"slider"} /> : null}
+      <div
+        className="sliderField sliderContainer"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div className="inner">
+          {sortedSlider.map((item) => {
+            const { className, style } = getSlideProps(item.sliderIndex);
+            return (
+              <div key={item.id} className={className} style={style}>
+                <Card photo={item} review={null} />
+              </div>
+            );
+          })}
         </div>
-      )}
-    </div>
+
+        {length > 1 && (
+          <div className="arrowAndCounter">
+            <button
+              type="button"
+              tabIndex={0}
+              className={`buttonArrow arrowLeft ${cooldown ? "cooldown" : ""}`}
+              onClick={previousPicture}
+              aria-label="Diapositive précédente"
+            >
+              <img
+                className="leftArrow"
+                src={arrowLeft}
+                alt="flèche vers la gauche"
+              />
+            </button>
+
+            <button
+              type="button"
+              tabIndex={0}
+              className={`buttonArrow arrowRight ${cooldown ? "cooldown" : ""}`}
+              onClick={nextPicture}
+              aria-label="Diapositive suivante"
+            >
+              <img
+                className="rightArrow"
+                src={arrowRight}
+                alt="flèche vers la droite"
+              />
+            </button>
+
+            <div className="counter">
+              {Array.from({ length: dotCount }).map((_, dotIndex) => (
+                <div
+                  key={dotIndex}
+                  className={`dot d${dotIndex} ${
+                    dotIndex === activeDotIndex ? "dotSelected" : ""
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
