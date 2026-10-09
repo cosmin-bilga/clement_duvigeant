@@ -195,11 +195,9 @@ export default function HomeSlider() {
               />
             ))}
           </div>
-          <button className="test" onClick={handleTest}>Test</button>
         </div>
         
       )}
-      <p>Hello world !</p>
     </div>
   );
 }
