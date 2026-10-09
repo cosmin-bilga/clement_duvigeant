@@ -1,4 +1,4 @@
-.sliderContainer {
+.photoSliderContainer {
   --white-color: white;
   --primary-color: darkgreen;
 
@@ -75,7 +75,7 @@
 
     button {
       position: absolute;
-      background: var(--primary-color);
+      //background: var(--primary-color);
       height: 100%;
       width: 5vw;
       border-radius: 0;

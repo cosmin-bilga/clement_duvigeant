@@ -124,7 +124,7 @@ export default function PhotoSlider({ sliders }) {
     <>
       {isConnected ? <AddImage location={"slider"} /> : null}
       <div
-        className="sliderField sliderContainer"
+        className="sliderField photoSliderContainer"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
