@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : jeu. 08 oct. 2026 à 07:31
+-- Généré le : ven. 09 oct. 2026 à 14:43
 -- Version du serveur : 11.5.2-MariaDB
 -- Version de PHP : 8.2.26
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `name` varchar(200) NOT NULL,
   `location` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `images`
@@ -90,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `images` (
 
 INSERT INTO `images` (`id`, `name`, `location`) VALUES
 (5, '5145ac91559de7c0271bbec05521dbca.png', 'homepage'),
+(38, '2a839295f20f7157348d07d21d3b3110.png', 'slider'),
 (37, 'a9c3542bc2682a28fb77ea8db1ca2abb.png', 'slider'),
 (11, '7551f3e8c6f377cd02d875198ed5c493.png', 'chauffage.main'),
 (13, '7e59d43f4c65d8a7bc6fee42fdcdc4b2.jpg', 'chauffage.side1'),
@@ -111,7 +112,10 @@ INSERT INTO `images` (`id`, `name`, `location`) VALUES
 (29, '26cc2399709383159fb390a985088794.png', 'slider'),
 (30, '8f068bc781d8c2043d17d2b4c3142074.png', 'slider'),
 (31, 'a305754895b23b55ba3811e5d494467c.png', 'slider'),
-(32, '13702dba9deb091682faa1f4cb1fdde2.png', 'slider');
+(32, '13702dba9deb091682faa1f4cb1fdde2.png', 'slider'),
+(39, '023aafa935bd1a6fb4249f47d59fc0e7.png', 'slider'),
+(40, '2f9cd9e540ee14eca439967d46f1f81c.png', 'slider'),
+(43, '0ff8f5bcb0c1eb21ea5e59b62e9c2e2f.png', 'slider');
 
 -- --------------------------------------------------------
 
@@ -132,18 +136,19 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `user_thumbnail` varchar(200) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `review_id` (`review_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `reviews`
 --
 
 INSERT INTO `reviews` (`id`, `review_id`, `user_name`, `date`, `rating`, `snippet`, `status`, `user_link`, `user_thumbnail`) VALUES
-(11, 'ChdDSUhNMG9nS0VJQ0FnSUNibk1MQ253RRAB', 'Aki Aki', '2026-10-05', 5, 'J\'avais un souci avec mon chauffe-eau j\'ai contacté Mr DUVIGEANT qui est intervenu rapidement,travail propre et surtout de bons conseils Merci encore MrDUVIGEANT🙏', 'pending', 'https://www.google.com/maps/contrib/103634931902927269186?hl=en-US', 'https://lh3.googleusercontent.com/a-/ALV-UjVgDzarypM5Z52ZkStSuHctc_6GU_GfELvCJd6AbU-SP_r0p6ku=s120-c-rp-mo-ba12-br100'),
-(7, 'Ci9DQUlRQUNvZENodHljRjlvT2tkRFNrVXhSa040VmxaUVNteG1TelJYYkc5S2JrRRAB', 'SANDRINE ROQUES', '2026-10-05', 5, 'Excellent professionnel. Travail très soigné. A recommander sans hésiter.', 'pending', 'https://www.google.com/maps/contrib/106512342142421542263?hl=en-US', 'https://lh3.googleusercontent.com/a/ACg8ocLw311r-sSi_I69jSXtKaXFykyibmTsWkN4R45dLnCFDoLh8Q=s120-c-rp-mo-br100'),
-(8, 'ChdDSUhNMG9nS0VJQ0FnSURyOXZQLXJBRRAB', 'Noélie ROUX MARQUES', '2026-10-05', 5, 'Clément est venu installer la climatisation réversible à notre domicile. Professionnel à l’écoute, efficace, et chantier laissé propre. Nous sommes très satisfaits.', 'pending', 'https://www.google.com/maps/contrib/103365384468615136956?hl=en-US', 'https://lh3.googleusercontent.com/a-/ALV-UjV--slV8KiCZYVRsyxEYKLd3nO8ykqsSnQRDJXlkHoqNTLQaNss=s120-c-rp-mo-ba12-br100'),
-(9, 'ChZDSUhNMG9nS0VJQ0FnSUMydDRpNlV3EAE', 'Nathan Albert', '2026-10-05', 5, 'Un grand merci !\n\nClément est un professionnel comme ceux sur lesquels on souhaiterait tomber plus souvent.\nPremière rencontre en Août 2021 pour effectuer un devis de pose de PAC avec changement d\'une vieille chaudière à fioul dans une maison que j\'envisageais d\'acheter. Clément a su se montrer d\'excellents conseils, qui m\'ont épargné bien des euros, tout en me conseillant au plus juste dans le choix de l\'appareil à installer.\n\nUne fois l\'achat de la dite maison faite, Clément avait anticipé les pénuries tout en me prévenant des délais, et a pu intervenir pour effectuer la pose de la PAC dès sa réception chez le fournisseur et en s\'adaptant à mon planning de travaux.\n\nLa pose est de qualité, le travail soigné, et Clément est toujours professionnel et à l\'écoute des questions et des interrogations, auxquelles il répond au mieux.\n\nClément a également installé un nouveau radiateur chez mes grands parents, qui sont ravis de son intervention, ainsi que du choix du radiateur, qui correspond parfaitement à la pièce et à l\'emplacement choisi pour son implantation.\n\nJ\'ai conseillé Clément à plusieurs reprises, et je le referai sans souci, alors faites vous va propre opinion en le contactant si vous recherchez un chauffagiste au pied de la montagne noire.', 'pending', 'https://www.google.com/maps/contrib/110385074022996858839?hl=en-US', 'https://lh3.googleusercontent.com/a/ACg8ocLP3wqvxvJ23k6IjvABrlBd6ucoSavIl1uGXKPTD52nub8aaw=s120-c-rp-mo-br100'),
-(10, 'ChdDSUhNMG9nS0VJQ0FnSUNLaTlLSy1nRRAB', 'Michel MOUGENOT', '2026-10-05', 5, 'Jeune professionnel (avril 2021) , efficace , prompt à intervenir , prope et rapide , il m\'a soulagé d\'un problème de chauffe-eau qui durait depuis un an (d\'avec un artisan bien peu scrupuleux) , ça devenait dur pour moi en tant que personne agée de 72 ans et seul (veuf).', 'pending', 'https://www.google.com/maps/contrib/117748193229383391597?hl=en-US', 'https://lh3.googleusercontent.com/a/ACg8ocLvn25nOQVTZX5BXRqvsL6lF9RTV6GbWK7ciqEXZQJZ3b8Y5A=s120-c-rp-mo-br100');
+(29, 'ChdDSUhNMG9nS0VJQ0FnSUNyaS1IYi1nRRAB', 'Pascale De Primo', '2024-07-11', 5, 'A la fois professionnel et serviable. Excellent travail !', 'pending', 'https://www.google.com/maps/contrib/110844103694186172274?hl=fr', 'https://lh3.googleusercontent.com/a/ACg8ocLy7xQG5e7DkeYgmMMPu5zGDUUHYivUbA5Je8mZ8rysrwZQjQ=s120-c-rp-mo-br100'),
+(24, 'Ci9DQUlRQUNvZENodHljRjlvT2tkRFNrVXhSa040VmxaUVNteG1TelJYYkc5S2JrRRAB', 'SANDRINE ROQUES', '2026-07-02', 5, 'Excellent professionnel. Travail très soigné. A recommander sans hésiter.', 'approved', 'https://www.google.com/maps/contrib/106512342142421542263?hl=fr', 'https://lh3.googleusercontent.com/a/ACg8ocLw311r-sSi_I69jSXtKaXFykyibmTsWkN4R45dLnCFDoLh8Q=s120-c-rp-mo-br100'),
+(25, 'ChdDSUhNMG9nS0VJQ0FnSURyOXZQLXJBRRAB', 'Noélie ROUX MARQUES', '2024-07-17', 5, 'Clément est venu installer la climatisation réversible à notre domicile. Professionnel à l’écoute, efficace, et chantier laissé propre. Nous sommes très satisfaits.', 'pending', 'https://www.google.com/maps/contrib/103365384468615136956?hl=fr', 'https://lh3.googleusercontent.com/a-/ALV-UjV--slV8KiCZYVRsyxEYKLd3nO8ykqsSnQRDJXlkHoqNTLQaNss=s120-c-rp-mo-ba12-br100'),
+(26, 'ChZDSUhNMG9nS0VJQ0FnSUMydDRpNlV3EAE', 'Nathan Albert', '2022-04-30', 5, 'Un grand merci !\n\nClément est un professionnel comme ceux sur lesquels on souhaiterait tomber plus souvent.\nPremière rencontre en Août 2021 pour effectuer un devis de pose de PAC avec changement d\'une vieille chaudière à fioul dans une maison que j\'envisageais d\'acheter. Clément a su se montrer d\'excellents conseils, qui m\'ont épargné bien des euros, tout en me conseillant au plus juste dans le choix de l\'appareil à installer.\n\nUne fois l\'achat de la dite maison faite, Clément avait anticipé les pénuries tout en me prévenant des délais, et a pu intervenir pour effectuer la pose de la PAC dès sa réception chez le fournisseur et en s\'adaptant à mon planning de travaux.\n\nLa pose est de qualité, le travail soigné, et Clément est toujours professionnel et à l\'écoute des questions et des interrogations, auxquelles il répond au mieux.\n\nClément a également installé un nouveau radiateur chez mes grands parents, qui sont ravis de son intervention, ainsi que du choix du radiateur, qui correspond parfaitement à la pièce et à l\'emplacement choisi pour son implantation.\n\nJ\'ai conseillé Clément à plusieurs reprises, et je le referai sans souci, alors faites vous va propre opinion en le contactant si vous recherchez un chauffagiste au pied de la montagne noire.', 'rejected', 'https://www.google.com/maps/contrib/110385074022996858839?hl=fr', 'https://lh3.googleusercontent.com/a/ACg8ocLP3wqvxvJ23k6IjvABrlBd6ucoSavIl1uGXKPTD52nub8aaw=s120-c-rp-mo-br100'),
+(27, 'ChdDSUhNMG9nS0VJQ0FnSUNLaTlLSy1nRRAB', 'Michel MOUGENOT', '2021-04-18', 5, 'Jeune professionnel (avril 2021) , efficace , prompt à intervenir , prope et rapide , il m\'a soulagé d\'un problème de chauffe-eau qui durait depuis un an (d\'avec un artisan bien peu scrupuleux) , ça devenait dur pour moi en tant que personne agée de 72 ans et seul (veuf).', 'pending', 'https://www.google.com/maps/contrib/117748193229383391597?hl=fr', 'https://lh3.googleusercontent.com/a/ACg8ocLvn25nOQVTZX5BXRqvsL6lF9RTV6GbWK7ciqEXZQJZ3b8Y5A=s120-c-rp-mo-br100'),
+(28, 'ChdDSUhNMG9nS0VJQ0FnSUNibk1MQ253RRAB', 'Aki Aki', '2024-07-24', 5, 'J\'avais un souci avec mon chauffe-eau j\'ai contacté Mr DUVIGEANT qui est intervenu rapidement,travail propre et surtout de bons conseils Merci encore MrDUVIGEANT🙏', 'pending', 'https://www.google.com/maps/contrib/103634931902927269186?hl=fr', 'https://lh3.googleusercontent.com/a-/ALV-UjVgDzarypM5Z52ZkStSuHctc_6GU_GfELvCJd6AbU-SP_r0p6ku=s120-c-rp-mo-ba12-br100');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
