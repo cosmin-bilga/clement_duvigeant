@@ -17,7 +17,7 @@ export default function ChangePasswordForm() {
 
     try {
       const response = await fetch(
-        "http://localhost/clement_duvigeant/backend/change_password/",
+        `${import.meta.env.VITE_API_URL}/change_password/`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
