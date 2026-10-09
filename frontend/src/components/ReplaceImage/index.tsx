@@ -47,7 +47,7 @@ export default function ReplaceImage({ id }) {
   return (
     <div className="replace-menu">
       <label htmlFor={`replace-${id}`} className="replace-button">
-        ↻ Remplacer
+        Remplacer
       </label>
 
       <input

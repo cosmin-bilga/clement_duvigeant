@@ -1,9 +1,8 @@
 .replace-menu {
+  position: static !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  margin-top: 8px;
   font-size: 13px;
 
   input[type="file"] {
@@ -15,7 +14,7 @@
     align-items: center;
     justify-content: center;
 
-    padding: 5px 9px;
+    padding: 5px 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 
