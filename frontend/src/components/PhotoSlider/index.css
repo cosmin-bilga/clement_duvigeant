@@ -1,4 +1,4 @@
-.sliderContainer {
+.photoSliderContainer {
   --white-color: white;
   --primary-color: darkgreen;
   -o-object-fit: cover;
@@ -14,24 +14,24 @@
   padding-top: 2vw;
 }
 @media screen and (aspect-ratio > 1/1) {
-  .sliderContainer {
+  .photoSliderContainer {
     height: 25vw;
     padding-top: 0;
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  .sliderContainer {
+  .photoSliderContainer {
     height: 91lvh;
   }
 }
-.sliderContainer .carousel-item {
+.photoSliderContainer .carousel-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background-color: white;
   overflow: hidden;
 }
-.sliderContainer .sl {
+.photoSliderContainer .sl {
   transition: translate 1.2s;
   position: absolute;
   -o-object-fit: cover;
@@ -40,16 +40,16 @@
   display: flex;
   justify-content: center;
 }
-.sliderContainer .slMax {
+.photoSliderContainer .slMax {
   pointer-events: none;
   width: 100%;
 }
 @media screen and (aspect-ratio > 1/1) {
-  .sliderContainer .slMax {
+  .photoSliderContainer .slMax {
     width: 90%;
   }
 }
-.sliderContainer .arrowAndCounter {
+.photoSliderContainer .arrowAndCounter {
   position: static;
   display: flex;
   justify-content: center;
@@ -57,32 +57,31 @@
   margin-left: 1lvh;
   margin-right: 1lvh;
 }
-.sliderContainer .arrowAndCounter button {
+.photoSliderContainer .arrowAndCounter button {
   position: absolute;
-  background: var(--primary-color);
   height: 100%;
   width: 5vw;
   border-radius: 0;
   padding: 1vw;
   opacity: 0.6;
 }
-.sliderContainer .arrowAndCounter button:hover {
+.photoSliderContainer .arrowAndCounter button:hover {
   opacity: 1;
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  .sliderContainer .arrowAndCounter button {
+  .photoSliderContainer .arrowAndCounter button {
     height: 100%;
     width: 3vw;
   }
 }
-.sliderContainer .arrowAndCounter button img {
+.photoSliderContainer .arrowAndCounter button img {
   width: 50%;
   height: 50%;
   -o-object-fit: contain;
      object-fit: contain;
   margin: 0;
 }
-.sliderContainer .arrowLeft {
+.photoSliderContainer .arrowLeft {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -93,13 +92,13 @@
   display: none;
 }
 @media screen and (aspect-ratio > 1/1) {
-  .sliderContainer .arrowLeft {
+  .photoSliderContainer .arrowLeft {
     width: 6vw;
     height: 6vw;
     display: block;
   }
 }
-.sliderContainer .arrowRight {
+.photoSliderContainer .arrowRight {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -110,13 +109,13 @@
   display: none;
 }
 @media screen and (aspect-ratio > 1/1) {
-  .sliderContainer .arrowRight {
+  .photoSliderContainer .arrowRight {
     width: 6vw;
     height: 6vw;
     display: block;
   }
 }
-.sliderContainer .counter {
+.photoSliderContainer .counter {
   position: absolute;
   z-index: 30;
   bottom: 0;
@@ -128,52 +127,52 @@
   height: 5.2vw;
 }
 @media screen and (aspect-ratio > 1/1) {
-  .sliderContainer .counter {
+  .photoSliderContainer .counter {
     height: 2vw;
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  .sliderContainer .counter {
+  .photoSliderContainer .counter {
     height: 5.2lvh;
   }
 }
-.sliderContainer .cooldown {
+.photoSliderContainer .cooldown {
   opacity: 0;
   cursor: default;
   transition: 1s;
 }
-.sliderContainer .previous {
+.photoSliderContainer .previous {
   transition: 1s;
   translate: -64% 5%;
   z-index: 3;
 }
 @media screen and (aspect-ratio > 1/1) {
-  .sliderContainer .previous {
+  .photoSliderContainer .previous {
     translate: -32% 5%;
   }
 }
-.sliderContainer .selected {
+.photoSliderContainer .selected {
   translate: 0%;
   transition: 1s;
   z-index: 5;
 }
-.sliderContainer .next {
+.photoSliderContainer .next {
   translate: 64% 5%;
   transition: 1s;
   z-index: 3;
 }
 @media screen and (aspect-ratio > 1/1) {
-  .sliderContainer .next {
+  .photoSliderContainer .next {
     translate: 32% 5%;
   }
 }
-.sliderContainer .prevPrev {
+.photoSliderContainer .prevPrev {
   translate: -64%;
 }
-.sliderContainer .nextNext {
+.photoSliderContainer .nextNext {
   translate: 64%;
 }
-.sliderContainer .dot {
+.photoSliderContainer .dot {
   background-color: var(--white-color);
   width: 2.6vw;
   height: 2.6vw;
@@ -183,7 +182,7 @@
   transition: 0.4s;
 }
 @media screen and (aspect-ratio > 1/1) {
-  .sliderContainer .dot {
+  .photoSliderContainer .dot {
     width: 1vw;
     height: 1vw;
     border-radius: 2vw;
@@ -191,32 +190,32 @@
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  .sliderContainer .dot {
+  .photoSliderContainer .dot {
     width: 2.6lvh;
     height: 2.6lvh;
     border-radius: 5.2lvh;
     margin: 0 2.6lvh;
   }
 }
-.sliderContainer .dotSelected {
+.photoSliderContainer .dotSelected {
   background-color: var(--primary-color);
   width: 3.9vw;
   height: 3.9vw;
   transition: 0.4s;
 }
 @media screen and (aspect-ratio > 1/1) {
-  .sliderContainer .dotSelected {
+  .photoSliderContainer .dotSelected {
     width: 1.5vw;
     height: 1.5vw;
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  .sliderContainer .dotSelected {
+  .photoSliderContainer .dotSelected {
     width: 3.9lvh;
     height: 3.9lvh;
   }
 }
-.sliderContainer .inner {
+.photoSliderContainer .inner {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -224,16 +223,16 @@
   justify-content: center;
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  .sliderContainer .inner {
+  .photoSliderContainer .inner {
     margin: auto;
     width: 90%;
   }
 }
-.sliderContainer .buttonArrow {
+.photoSliderContainer .buttonArrow {
   border: 0px;
   background: none;
 }
-.sliderContainer .blinded {
+.photoSliderContainer .blinded {
   opacity: 0;
 }
 

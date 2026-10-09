@@ -15,6 +15,7 @@ export default function HomeSlider() {
   const touchStartX = useRef(0);
   const isConnected = !!localStorage.getItem("token");
 
+<<<<<<< HEAD
   const get_review = async () => {
      if (isConnected) {
       try {
@@ -61,6 +62,11 @@ export default function HomeSlider() {
   useEffect(() => {
     const use_reviews =  get_review();
   })
+=======
+  const handleTest = () => {
+    alert("Hello World !");
+  };
+>>>>>>> 3bfa5b8802c77b5cd0eb67a0b0fc4ab74fc58fa8
 
   const sortedSlider = useMemo(() => {
     
@@ -166,18 +172,17 @@ export default function HomeSlider() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      
       <div className="inner">
         {sortedSlider.map((item) => {
           const { className, style } = getSlideProps(item.sliderIndex);
           return (
-            <div key={item.id} className={className} style={style}  >
+            <div key={item.id} className={className} style={style}>
               <Card review={item} />
             </div>
           );
         })}
       </div>
-        
+
       {length > 1 && (
         <div className="arrowAndCounter">
           <button
@@ -219,7 +224,6 @@ export default function HomeSlider() {
             ))}
           </div>
         </div>
-        
       )}
     </div>
   );

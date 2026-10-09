@@ -2,7 +2,7 @@ import PhotoSlider from "../PhotoSlider";
 import "./accueil.css";
 import { useContent } from "../../contexts/ContentContext";
 
-function Accueil() {
+function Accueil({ addMessage }) {
   const { slider } = useContent() ?? {};
 
   const sliders = slider?.map((photo) => ({
@@ -71,7 +71,7 @@ function Accueil() {
           <br></br>
         </div>
         <div className="Caroussel">
-          <PhotoSlider sliders={sliders}></PhotoSlider>
+          <PhotoSlider sliders={sliders} addMessage={addMessage}></PhotoSlider>
         </div>
       </div>
     </div>

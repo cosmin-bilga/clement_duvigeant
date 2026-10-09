@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./changepass.css";
 
 export default function ChangePasswordForm() {
   const [email, setEmail] = useState("admin@admin.fr");
@@ -17,7 +18,7 @@ export default function ChangePasswordForm() {
 
     try {
       const response = await fetch(
-        "http://localhost/clement_duvigeant/backend/change_password/",
+        `${import.meta.env.VITE_API_URL}/change_password/`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -40,40 +41,46 @@ export default function ChangePasswordForm() {
   };
 
   return (
-    <form>
-      <label htmlFor="email">Email:</label>
-      <input
-        type="email"
-        name="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label htmlFor="password">Password:</label>
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <label htmlFor="new_password">New password:</label>
-      <input
-        type="password"
-        name="new_password"
-        value={new_password}
-        onChange={(e) => setNewPassword(e.target.value)}
-      />
-      <label htmlFor="password_confirm">New password:</label>
-      <input
-        type="password"
-        name="password_confirm"
-        value={password_confirm}
-        onChange={(e) => setPasswordConfirm(e.target.value)}
-      />
-      <input
-        type="submit"
-        value="Changer le mot de passe"
-        onClick={handle_change}
-      ></input>
-    </form>
+    <div className="change-pass-container">
+      <h1>Changer le mot de passe</h1>
+      <form className="change-pass-form">
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="password">Mot de passe:</label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <label htmlFor="new_password">Nouveau mot de passe:</label>
+        <input
+          type="password"
+          name="new_password"
+          value={new_password}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <label htmlFor="password_confirm">
+          Confirmer nouveau mot de passe:
+        </label>
+        <input
+          type="password"
+          name="password_confirm"
+          value={password_confirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
+        <input
+          className="submit-button"
+          type="submit"
+          value="Changer le mot de passe"
+          onClick={handle_change}
+        ></input>
+      </form>
+    </div>
   );
 }

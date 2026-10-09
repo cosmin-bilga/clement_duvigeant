@@ -26,13 +26,10 @@ export default function Auth() {
     formData.append("password", password);
 
     try {
-      const response = await fetch(
-        "http://localhost/clement_duvigeant/backend/auth/",
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/`, {
+        method: "POST",
+        body: formData,
+      });
 
       const data = await response.json();
 

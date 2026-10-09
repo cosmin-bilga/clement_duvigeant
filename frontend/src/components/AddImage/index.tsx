@@ -1,16 +1,11 @@
 import { useState } from "react";
 import "./index.css";
 
-export default function AddImage({ location }) {
-  const [open, setOpen] = useState(false);
+export default function AddImage({ location, addMessage }) {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
-  };
-
-  const handleFormChange = (e) => {
-    setOpen(!open);
   };
 
   const submitImage = async (e) => {
@@ -18,6 +13,7 @@ export default function AddImage({ location }) {
 
     if (!file) {
       console.error("No file selected");
+      addMessage("Pas de fichier selectionné.");
       return;
     }
 
@@ -26,24 +22,23 @@ export default function AddImage({ location }) {
     formData.append("photo", file);
 
     try {
-      const response = await fetch(
-        "http://localhost/clement_duvigeant/backend/photos/",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          method: "POST",
-          body: formData,
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      );
+        method: "POST",
+        body: formData,
+      });
 
       const data = await response.json();
 
       if (!response.ok) {
+        addMessage("Erreur lors de l'envoi de l'image.");
         throw new Error(data.error || "Photo upload failed");
       }
 
       console.log("Uploaded photo:", location);
+      addMessage("Photo ajouté avec succes.");
     } catch (error) {
       console.error(error);
     }

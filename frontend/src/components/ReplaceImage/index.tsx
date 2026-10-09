@@ -21,16 +21,13 @@ export default function ReplaceImage({ id }) {
     formData.append("photo", file);
 
     try {
-      const response = await fetch(
-        "http://localhost/clement_duvigeant/backend/photos/",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          method: "POST",
-          body: formData,
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      );
+        method: "POST",
+        body: formData,
+      });
 
       const data = await response.json();
 

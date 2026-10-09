@@ -1,11 +1,9 @@
 import "./index.css";
 
-export default function Card({ review = null, photo = null }) {
+export default function Card({ review = null, photo = null, addMessage }) {
   const isConnected = !!localStorage.getItem("token");
 
   const removeImage = async (id) => {
-    console.log("SUPPRESSION TEMPORAIREMENT DESACCTIVEE", id);
-    return;
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/`, {
         method: "DELETE",
@@ -21,6 +19,8 @@ export default function Card({ review = null, photo = null }) {
       if (!response.ok) {
         throw new Error(data.message || "Photo deletion failed");
       }
+
+      addMessage("Photo supprimé avec succes.");
     } catch (error) {
       console.error(error);
     }
@@ -32,26 +32,31 @@ export default function Card({ review = null, photo = null }) {
         <p>{review.user_name}</p>
         <img src={review.user_thumbail} alt="user profile picture" />
         <p>{review.date}</p>
-        <p>{review.snippet}</p>        
+        <p>{review.snippet}</p>
         <p>{review.rating}</p>
-        <p>{review.user_link}</p>        
+        <p>{review.user_link}</p>
       </div>
     );
   }
   if (review && isConnected) {
+<<<<<<< HEAD
     return(
        <div className="review-card-admin">
+=======
+    return (
+      <div className="review-card">
+>>>>>>> 3bfa5b8802c77b5cd0eb67a0b0fc4ab74fc58fa8
         <p>{review.user_name}</p>
         <img src={review.user_thumbail} alt="user profile picture" />
         <p>{review.date}</p>
-        <p>{review.snippet}</p>       
+        <p>{review.snippet}</p>
         <p>{review.rating}</p>
         {/* <p>{review.status}</p> */}
         <p>Hello World !</p>
         <button>Valider</button>
-        <button>Refuser</button>        
+        <button>Refuser</button>
       </div>
-    )
+    );
   }
   if (photo) {
     return (
