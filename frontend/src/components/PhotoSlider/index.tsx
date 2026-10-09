@@ -12,7 +12,7 @@ export default function PhotoSlider({ sliders }) {
   //const { list, loading } = useEffect((state) => state.spotlight);
   //const sliders = list?.data || [];
 
-  console.log("sliders", sliders);
+  //console.log("sliders", sliders);
 
   const [selected, setSelected] = useState(0);
   const [cooldown, setCooldown] = useState(false);
