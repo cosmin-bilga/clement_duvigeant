@@ -4,9 +4,9 @@
   margin: 0;
   width: 96%;
   /*.accueilContent{
-      position: relative;
-      padding: 0;
-  }*/
+        position: relative;
+        padding: 0;
+    }*/
 }
 .home .observer {
   position: absolute;
@@ -38,4 +38,15 @@
   .id {
     top: -140px;
   }
+}
+
+.info-message {
+  width: clamp(200px, 40%, 600px);
+  background-color: wheat;
+  color: black;
+  font-weight: 300;
+}
+.info-message p {
+  padding: 3px;
+  margin-bottom: 2px;
 }/*# sourceMappingURL=home.css.map */

@@ -4,13 +4,26 @@ import Chauffage from "../../components/Chauffage";
 import Vmc from "../../components/Vmc";
 import Eau from "../../components/Eau";
 import Cgv from "../../components/Cgv";
-import { useContent } from "../../contexts/ContentContext";
+//import { useContent } from "../../contexts/ContentContext";
 import "./home.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import HomeSlider from "../../components/HomeSlider"
+import HomeSlider from "../../components/HomeSlider";
+
 function Home() {
+  const [message, setMessage] = useState([]);
+
+  const addMessage = (text) => {
+    const id = crypto.randomUUID();
+
+    setMessage((prev) => [...prev, { id, text }]);
+
+    setTimeout(() => {
+      setMessage((prev) => prev.filter((m) => m.id !== id));
+    }, 3000);
+  };
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -20,7 +33,7 @@ function Home() {
   const vmc = useRef(null);
   const eau = useRef(null);
   const accueil = useRef(null);
-  const { content, photos } = useContent() ?? {};
+  /* const { content, photos } = useContent() ?? {}; */
 
   useEffect(() => {
     const observerClim = new IntersectionObserver((entries) => {
@@ -93,12 +106,20 @@ function Home() {
 
   return (
     <main>
+      {/* messages */}
+      {message && (
+        <div className="info-message">
+          {message.map((m) => {
+            return <p key={m.id}>{m.text}</p>;
+          })}
+        </div>
+      )}
       <div className="ancre">
         <span id="acceuil" className="id"></span>
         <span className="observer" ref={accueil}></span>
       </div>
       <div className="accueilContent">
-        <Accueil></Accueil>
+        <Accueil addMessage={addMessage}></Accueil>
       </div>
       <div className="home">
         <div className="content">
@@ -110,8 +131,8 @@ function Home() {
             <Chauffage></Chauffage>
           </div>
           <div className="test">
-          <HomeSlider/>
-        </div>
+            <HomeSlider />
+          </div>
           <div className="ancre">
             <span id="climatisation" className="id"></span>
             <span className="observer climatisation" ref={climatisation}></span>
@@ -139,7 +160,7 @@ function Home() {
             <Vmc></Vmc>
           </div>
         </div>
-        
+
         <div className="cgv hidden">
           <div className="ancre">
             <span id="cgv" className="id"></span>

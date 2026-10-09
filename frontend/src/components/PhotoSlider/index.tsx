@@ -4,16 +4,10 @@ import arrowLeft from "./arrow_left.png";
 import arrowRight from "./arrow_right.png";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-//import sliders from "../../assets/review.json";
 import Card from "../Card/Review";
 import AddImage from "../AddImage";
 
-export default function PhotoSlider({ sliders }) {
-  //const { list, loading } = useEffect((state) => state.spotlight);
-  //const sliders = list?.data || [];
-
-  //console.log("sliders", sliders);
-
+export default function PhotoSlider({ sliders, addMessage }) {
   const [selected, setSelected] = useState(0);
   const [cooldown, setCooldown] = useState(false);
   const touchStartX = useRef(0);
@@ -122,7 +116,9 @@ export default function PhotoSlider({ sliders }) {
 
   return (
     <>
-      {isConnected ? <AddImage location={"slider"} /> : null}
+      {isConnected ? (
+        <AddImage location={"slider"} addMessage={addMessage} />
+      ) : null}
       <div
         className="sliderField photoSliderContainer"
         onTouchStart={handleTouchStart}
@@ -133,7 +129,7 @@ export default function PhotoSlider({ sliders }) {
             const { className, style } = getSlideProps(item.sliderIndex);
             return (
               <div key={item.id} className={className} style={style}>
-                <Card photo={item} review={null} />
+                <Card photo={item} addMessage={addMessage} review={null} />
               </div>
             );
           })}
