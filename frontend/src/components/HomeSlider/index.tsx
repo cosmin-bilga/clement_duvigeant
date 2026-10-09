@@ -1,5 +1,4 @@
 import "./index.css";
-
 import arrowLeft from "./arrow_left.png";
 import arrowRight from "./arrow_right.png";
 
@@ -14,32 +13,57 @@ export default function HomeSlider() {
   const [selected, setSelected] = useState(0);
   const [cooldown, setCooldown] = useState(false);
   const touchStartX = useRef(0);
+  const isConnected = !!localStorage.getItem("token");
 
-  const handleTest = () => {
-    alert("Hello World !")
-  }
+  const get_review = async () => {
+     if (isConnected) {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/reviews/`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            method: "GET",
+          },
+        );
 
-  // const get_reviews = async () => {  
+        const data = await response.json();
 
-  //   try {
-  //     const response = await fetch(
-  //       "https://serpapi.com/search.json?engine=google_maps_reviews&data_id=0x12ae15152d746de1:0x9292b5f1e813a3c&hl=en",        
-  //     );
+        if (!response.ok) {
+          throw new Error(data.error || "Echec de récupération des avis");
+        }
+        
+        return data;        
+      } catch (e) {         
+        return [];
+      }
+    }
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/reviews/?status=approved`,
+        {
+          method: "GET",
+        },
+      );
 
-  //     const data = await response.json();
+      const data = await response.json();
 
-  //     if (!response.ok) {
-  //       throw new Error(data.error || "Error with reviews");
-  //     }
-
-  //     console.log("Données récupérées:", data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+      if (!response.ok) {
+        throw new Error(data.error || "Echec de récupération des avis");
+      }
+      return data;      
+    } catch (e) {       
+      return [];     
+    }
+  };
   
+  useEffect(() => {
+    const use_reviews =  get_review();
+  })
 
   const sortedSlider = useMemo(() => {
+    
     if (!sliders || sliders.length === 0) return [];
     let listClone = structuredClone(sliders);
     if (listClone.length === 2) {
@@ -129,7 +153,6 @@ export default function HomeSlider() {
       style: { zIndex: 0, opacity: 0 },
     };
   };
-
   // if (loading) return <Loader />;
   // if (length === 0) return null;
 

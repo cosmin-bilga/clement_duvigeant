@@ -38,15 +38,16 @@ export default function Card({ review = null, photo = null }) {
       </div>
     );
   }
-  if (review, isConnected) {
+  if (review && isConnected) {
     return(
-       <div className="review-card">
+       <div className="review-card-admin">
         <p>{review.user_name}</p>
         <img src={review.user_thumbail} alt="user profile picture" />
         <p>{review.date}</p>
         <p>{review.snippet}</p>       
         <p>{review.rating}</p>
-        <p>{review.status}</p>
+        {/* <p>{review.status}</p> */}
+        <p>Hello World !</p>
         <button>Valider</button>
         <button>Refuser</button>        
       </div>
