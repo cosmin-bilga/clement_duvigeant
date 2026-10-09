@@ -39,13 +39,8 @@ export default function Card({ review = null, photo = null, addMessage }) {
     );
   }
   if (review && isConnected) {
-<<<<<<< HEAD
     return(
        <div className="review-card-admin">
-=======
-    return (
-      <div className="review-card">
->>>>>>> 3bfa5b8802c77b5cd0eb67a0b0fc4ab74fc58fa8
         <p>{review.user_name}</p>
         <img src={review.user_thumbail} alt="user profile picture" />
         <p>{review.date}</p>

@@ -15,7 +15,6 @@ export default function HomeSlider() {
   const touchStartX = useRef(0);
   const isConnected = !!localStorage.getItem("token");
 
-<<<<<<< HEAD
   const get_review = async () => {
      if (isConnected) {
       try {
@@ -62,11 +61,6 @@ export default function HomeSlider() {
   useEffect(() => {
     const use_reviews =  get_review();
   })
-=======
-  const handleTest = () => {
-    alert("Hello World !");
-  };
->>>>>>> 3bfa5b8802c77b5cd0eb67a0b0fc4ab74fc58fa8
 
   const sortedSlider = useMemo(() => {
     
