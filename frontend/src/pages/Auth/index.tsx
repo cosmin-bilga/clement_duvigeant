@@ -8,22 +8,13 @@ export default function Auth() {
 
   const navigate = useNavigate();
 
-  const get_reviews = async () => {  
+  const refresh_reviews = async () => {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/serp/`);
 
-    try {
-      const response = await fetch(
-        "https://serpapi.com/search.json?engine=google_maps_reviews&data_id=0x12ae15152d746de1:0x9292b5f1e813a3c&hl=en",        
-      );
+    const data = await response.json();
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Error with reviews");
-      }
-
-      console.log("Données récupérées:", data);
-    } catch (error) {
-      console.error(error);
+    if (!response.ok) {
+      throw new Error(data.error || "Error refreshing reviews");
     }
   };
 
@@ -51,7 +42,7 @@ export default function Auth() {
 
       console.log("Logged in:", data);
       localStorage.setItem("token", data.token);
-      get_reviews();
+      refresh_reviews();
       navigate("/");
     } catch (error) {
       console.error(error);

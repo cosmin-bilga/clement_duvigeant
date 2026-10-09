@@ -1,0 +1,22 @@
+.add-photo-form {
+  margin: 1vw;
+  font-size: 1rem;
+}
+.add-photo-form input {
+  padding: 0.5rem;
+}
+.add-photo-form #file-upload {
+  display: none;
+}
+.add-photo-form #custom-file-upload {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #f5f5f5;
+  margin-right: 2rem;
+}
+.add-photo-form #custom-file-upload:hover {
+  background: #e5e5e5;
+}/*# sourceMappingURL=index.css.map */

@@ -1,8 +1,8 @@
 /* UTILISER TIPTAP ET DOMPURIFY */
-
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState, useEffect } from "react";
+import "./changetext.css";
 
 export default function ChangeText({ location, placeholder = "", id = null }) {
   const [content, setContent] = useState("");
@@ -59,20 +59,20 @@ export default function ChangeText({ location, placeholder = "", id = null }) {
   }
 
   return (
-    <form onSubmit={submitContent}>
+    <form onSubmit={submitContent} className="text-editor">
       <div>
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
         >
-          Bold
+          Gras
         </button>
 
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleItalic().run()}
         >
-          Italic
+          Italique
         </button>
 
         <button
@@ -81,7 +81,7 @@ export default function ChangeText({ location, placeholder = "", id = null }) {
             editor.chain().focus().toggleHeading({ level: 2 }).run()
           }
         >
-          Heading
+          Titre 1
         </button>
 
         <button
@@ -90,20 +90,20 @@ export default function ChangeText({ location, placeholder = "", id = null }) {
             editor.chain().focus().toggleHeading({ level: 3 }).run()
           }
         >
-          Heading 2
+          Titre 2
         </button>
 
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
         >
-          List
+          Liste
         </button>
       </div>
 
       <EditorContent editor={editor} />
 
-      <button type="submit">Save</button>
+      <button type="submit">Enregistrer</button>
     </form>
   );
 }

@@ -7,9 +7,8 @@ require_once "../jwt.php";
 
 Auth::init();
 
-function update_reviews($data): void
+/* function update_reviews($data): void
 {
-    // AUTHENTICATION
     $userId = null;
     if (isset($_SERVER["HTTP_AUTHORIZATION"]))
         $userId = Auth::validate(explode(" ", $_SERVER["HTTP_AUTHORIZATION"])[1])->sub;
@@ -21,7 +20,6 @@ function update_reviews($data): void
         ]);
         return;
     }
-
 
     if (isset($_GET["id"])) {
         modify_review_status($_GET["id"], $data);
@@ -87,7 +85,7 @@ function update_reviews($data): void
     echo json_encode([
         "message" => "Reviews updated",
     ]);
-}
+} */
 
 function get_reviews(): void
 {
@@ -98,7 +96,7 @@ function get_reviews(): void
 
     $conn = Connection::getConnection();
 
-    if ($status) {
+    if ($status && $status === "approved") {
         try {
             $sql = "SELECT * FROM reviews WHERE status=:status";
             $stmt = $conn->prepare($sql);
@@ -112,6 +110,18 @@ function get_reviews(): void
             return;
         }
     } else {
+        $userId = null;
+        if (isset($_SERVER["HTTP_AUTHORIZATION"]))
+            $userId = Auth::validate(explode(" ", $_SERVER["HTTP_AUTHORIZATION"])[1])->sub;
+
+        if (!$userId) {
+            http_response_code(401);
+            echo json_encode([
+                "message" => "You must be logged in"
+            ]);
+            return;
+        }
+
         try {
             $sql = "SELECT * FROM reviews";
             $stmt = $conn->prepare($sql);
@@ -128,17 +138,39 @@ function get_reviews(): void
     echo json_encode($res);
 }
 
-function modify_review_status($review_id, $data): void
+function modify_review_status(): void
 {
+    // AUTHENTICATION
+    $userId = null;
+    if (isset($_SERVER["HTTP_AUTHORIZATION"]))
+        $userId = Auth::validate(explode(" ", $_SERVER["HTTP_AUTHORIZATION"])[1])->sub;
 
-    if (!isset($data['status']) || !in_array($data["status"], ["rejected", "approved", "pending"])) {
+    if (!$userId) {
+        http_response_code(401);
+        echo json_encode([
+            "message" => "You must be logged in"
+        ]);
+        return;
+    }
+
+    if (isset($_GET["id"]))
+        $review_id = $_GET["id"];
+    else {
+        echo json_encode([
+            "message" => "Id is missing"
+        ]);
+        return;
+    }
+
+
+    if (!isset($_POST['status']) || !in_array($_POST["status"], ["rejected", "approved", "pending"])) {
         http_response_code(400);
         echo json_encode([
             "message" => "Status not set or invalid (approved, pending or rejected)"
         ]);
         return;
     } else {
-        $status = $data['status'];
+        $status = $_POST['status'];
     }
 
     $conn = Connection::getConnection();
