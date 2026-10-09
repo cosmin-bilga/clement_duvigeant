@@ -28,11 +28,29 @@ export default function Card({ review = null, photo = null }) {
 
   if (review) {
     return (
-      <div className="product-card">
-        <p>{review.id}</p>
-        <p>{review.snippet}</p>
+      <div className="review-card">
+        <p>{review.user_name}</p>
+        <img src={review.user_thumbail} alt="user profile picture" />
+        <p>{review.date}</p>
+        <p>{review.snippet}</p>        
+        <p>{review.rating}</p>
+        <p>{review.user_link}</p>        
       </div>
     );
+  }
+  if (review, isConnected) {
+    return(
+       <div className="review-card">
+        <p>{review.user_name}</p>
+        <img src={review.user_thumbail} alt="user profile picture" />
+        <p>{review.date}</p>
+        <p>{review.snippet}</p>       
+        <p>{review.rating}</p>
+        <p>{review.status}</p>
+        <button>Valider</button>
+        <button>Refuser</button>        
+      </div>
+    )
   }
   if (photo) {
     return (
