@@ -96,7 +96,7 @@ function get_reviews(): void
 
     $conn = Connection::getConnection();
 
-    if ($status) {
+    if ($status && $status === "approved") {
         try {
             $sql = "SELECT * FROM reviews WHERE status=:status";
             $stmt = $conn->prepare($sql);
@@ -110,6 +110,18 @@ function get_reviews(): void
             return;
         }
     } else {
+        $userId = null;
+        if (isset($_SERVER["HTTP_AUTHORIZATION"]))
+            $userId = Auth::validate(explode(" ", $_SERVER["HTTP_AUTHORIZATION"])[1])->sub;
+
+        if (!$userId) {
+            http_response_code(401);
+            echo json_encode([
+                "message" => "You must be logged in"
+            ]);
+            return;
+        }
+
         try {
             $sql = "SELECT * FROM reviews";
             $stmt = $conn->prepare($sql);
