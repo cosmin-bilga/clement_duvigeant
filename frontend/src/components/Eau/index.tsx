@@ -3,7 +3,7 @@ import { useContent } from "../../contexts/ContentContext";
 import ChangeText from "../ChangeText";
 import ReplaceImage from "../ReplaceImage";
 
-function Eau() {
+function Eau({ addMessage }) {
   const { content, photos } = useContent();
 
   const token = localStorage.getItem("token");
@@ -17,6 +17,7 @@ function Eau() {
         <ChangeText
           location={"homepage.eau"}
           placeholder={content?.["homepage.eau"]}
+          addMessage={addMessage}
         />
       ) : (
         <div
@@ -72,7 +73,7 @@ function Eau() {
           ></img> */}
         </div>
         {isLoggedIn && photos?.["eau.main1"] && (
-          <ReplaceImage id={photos["eau.main1"].id} />
+          <ReplaceImage id={photos["eau.main1"].id} addMessage={addMessage} />
         )}
         <div
           className="img2"
@@ -95,7 +96,7 @@ function Eau() {
           ></img> */}
         </div>
         {isLoggedIn && photos?.["eau.main2"] && (
-          <ReplaceImage id={photos["eau.main2"].id} />
+          <ReplaceImage id={photos["eau.main2"].id} addMessage={addMessage} />
         )}
         <div
           className="img3"
@@ -118,7 +119,7 @@ function Eau() {
           ></img> */}
         </div>
         {isLoggedIn && photos?.["eau.main3"] && (
-          <ReplaceImage id={photos["eau.main3"].id} />
+          <ReplaceImage id={photos["eau.main3"].id} addMessage={addMessage} />
         )}
       </div>
       <div className="logo" data-aos="fade-left" data-aos-duration="2000">
@@ -142,7 +143,7 @@ function Eau() {
           ></img> */}
         </a>
         {isLoggedIn && photos?.["eau.logo1"] && (
-          <ReplaceImage id={photos["eau.logo1"].id} />
+          <ReplaceImage id={photos["eau.logo1"].id} addMessage={addMessage} />
         )}
         <a
           href="https://www.qualit-enr.org/qualifications/qualisol/"
@@ -164,7 +165,7 @@ function Eau() {
           ></img> */}
         </a>
         {isLoggedIn && photos?.["eau.logo2"] && (
-          <ReplaceImage id={photos["eau.logo2"].id} />
+          <ReplaceImage id={photos["eau.logo2"].id} addMessage={addMessage} />
         )}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./replaceimage.css";
 
-export default function ReplaceImage({ id }) {
+export default function ReplaceImage({ id, addMessage }) {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
@@ -13,6 +13,7 @@ export default function ReplaceImage({ id }) {
 
     if (!file) {
       console.error("No file selected");
+      addMessage("Veuillez selectionner un fichier.");
       return;
     }
 
@@ -32,10 +33,12 @@ export default function ReplaceImage({ id }) {
       const data = await response.json();
 
       if (!response.ok) {
+        addMessage("Mise a jour de la photo a échoué.");
         throw new Error(data.error || "Photo upload failed");
       }
 
-      console.log("Replaced photo:", id);
+      //console.log("Replaced photo:", id);
+      addMessage("Photo remplacée avec succes.");
     } catch (error) {
       console.error(error);
     }

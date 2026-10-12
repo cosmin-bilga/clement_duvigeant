@@ -139,7 +139,7 @@ function Home() {
           </div>
 
           <div className="section">
-            <Climatisation></Climatisation>
+            <Climatisation addMessage={addMessage}></Climatisation>
           </div>
 
           <div className="ancre">
@@ -147,7 +147,7 @@ function Home() {
             <span className="observer" ref={eau}></span>
           </div>
           <div className="section">
-            <Eau></Eau>
+            <Eau addMessage={addMessage}></Eau>
           </div>
 
           <div className="ancre">
@@ -157,7 +157,7 @@ function Home() {
             </div>
           </div>
           <div className="section">
-            <Vmc></Vmc>
+            <Vmc addMessage={addMessage}></Vmc>
           </div>
         </div>
 
@@ -165,7 +165,7 @@ function Home() {
           <div className="ancre">
             <span id="cgv" className="id"></span>
           </div>
-          <Cgv></Cgv>
+          <Cgv addMessage={addMessage}></Cgv>
         </div>
       </div>
     </main>

@@ -6,7 +6,7 @@ import "./climatisation.css";
 import ChangeText from "../ChangeText";
 import ReplaceImage from "../ReplaceImage";
 
-function Climatisation() {
+function Climatisation({ addMessage }) {
   const { content, photos } = useContent();
 
   const token = localStorage.getItem("token");
@@ -31,7 +31,10 @@ function Climatisation() {
               alt="climatisation"
             ></img>
             {isLoggedIn && photos?.["climatisation.main"] && (
-              <ReplaceImage id={photos["climatisation.main"].id} />
+              <ReplaceImage
+                id={photos["climatisation.main"].id}
+                addMessage={addMessage}
+              />
             )}
             {/*  <img
               src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/clim.jpg"
@@ -57,6 +60,7 @@ function Climatisation() {
             <ChangeText
               location={"homepage.climatisation"}
               placeholder={content?.["homepage.climatisation"]}
+              addMessage={addMessage}
             />
           ) : (
             <div
@@ -154,7 +158,10 @@ function Climatisation() {
               ></img> */}
             </a>
             {isLoggedIn && photos?.["climatisation.logo2"] && (
-              <ReplaceImage id={photos["climatisation.logo2"].id} />
+              <ReplaceImage
+                id={photos["climatisation.logo2"].id}
+                addMessage={addMessage}
+              />
             )}
             <a
               href="https://www.socotec.fr//"
@@ -181,7 +188,10 @@ function Climatisation() {
               ></img> */}
             </a>
             {isLoggedIn && photos?.["climatisation.logo3"] && (
-              <ReplaceImage id={photos["climatisation.logo3"].id} />
+              <ReplaceImage
+                id={photos["climatisation.logo3"].id}
+                addMessage={addMessage}
+              />
             )}
           </div>
         </div>

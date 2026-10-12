@@ -17,6 +17,7 @@ function Chauffage({ addMessage }) {
         <div className="left">
           {isLoggedIn ? (
             <ChangeText
+              addMessage={addMessage}
               location={"homepage.chauffage"}
               placeholder={content?.["homepage.chauffage"]}
             />
@@ -76,7 +77,10 @@ function Chauffage({ addMessage }) {
               alt="homme de chantier"
             ></img>
             {isLoggedIn && photos?.["chauffage.main"] && (
-              <ReplaceImage id={photos["chauffage.main"].id} />
+              <ReplaceImage
+                id={photos["chauffage.main"].id}
+                addMessage={addMessage}
+              />
             )}
           </div>
         </div>
@@ -92,7 +96,10 @@ function Chauffage({ addMessage }) {
               alt="couple devant une cheminée"
             ></img>
             {isLoggedIn && photos?.["chauffage.side1"] && (
-              <ReplaceImage id={photos["chauffage.side1"].id} />
+              <ReplaceImage
+                id={photos["chauffage.side1"].id}
+                addMessage={addMessage}
+              />
             )}
             {/*  <img
               src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/chauffage1.jpg"
@@ -115,7 +122,10 @@ function Chauffage({ addMessage }) {
               alt="thermostat de radiateur"
             ></img>
             {isLoggedIn && photos?.["chauffage.side2"] && (
-              <ReplaceImage id={photos["chauffage.side2"].id} />
+              <ReplaceImage
+                id={photos["chauffage.side2"].id}
+                addMessage={addMessage}
+              />
             )}
             {/* <img
               src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/chauffage2.jpg"
@@ -138,7 +148,10 @@ function Chauffage({ addMessage }) {
               alt="thermostat electrique"
             ></img>
             {isLoggedIn && photos?.["chauffage.side3"] && (
-              <ReplaceImage id={photos["chauffage.side3"].id} />
+              <ReplaceImage
+                id={photos["chauffage.side3"].id}
+                addMessage={addMessage}
+              />
             )}
             {/* <img
               src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/chauffage3.jpg"
@@ -164,7 +177,10 @@ function Chauffage({ addMessage }) {
             alt="logo rge qualipac"
           ></img>
           {isLoggedIn && photos?.["chauffage.logo1"] && (
-            <ReplaceImage id={photos["chauffage.logo1"].id} />
+            <ReplaceImage
+              id={photos["chauffage.logo1"].id}
+              addMessage={addMessage}
+            />
           )}
           {/*  <img
             src="https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
@@ -186,7 +202,10 @@ function Chauffage({ addMessage }) {
             alt="logo rge qualisol"
           ></img>
           {isLoggedIn && photos?.["chauffage.logo2"] && (
-            <ReplaceImage id={photos["chauffage.logo2"].id} />
+            <ReplaceImage
+              id={photos["chauffage.logo2"].id}
+              addMessage={addMessage}
+            />
           )}
           {/* <img
             src="https://l-araignee.net/ets-clement-duvigeant/assets/qualisol.png"

@@ -4,7 +4,12 @@ import StarterKit from "@tiptap/starter-kit";
 import { useState, useEffect } from "react";
 import "./changetext.css";
 
-export default function ChangeText({ location, placeholder = "", id = null }) {
+export default function ChangeText({
+  addMessage,
+  location,
+  placeholder = "",
+  id = null,
+}) {
   const [content, setContent] = useState("");
 
   const editor = useEditor({
@@ -45,8 +50,11 @@ export default function ChangeText({ location, placeholder = "", id = null }) {
       const data = await response.json();
 
       if (!response.ok) {
+        addMessage("Erreur lors de la sauvegarde.");
         throw new Error(data.message || "Upload failed");
       }
+
+      addMessage("Contenu sauvegardé avec succes!");
 
       //console.log(data);
     } catch (error) {
