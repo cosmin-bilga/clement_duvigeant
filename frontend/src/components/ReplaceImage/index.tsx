@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./replaceimage.css";
 
-export default function ReplaceImage({ id, addMessage }) {
+export default function ReplaceImage({ id, addMessage, menuStyle = "" }) {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
@@ -45,7 +45,7 @@ export default function ReplaceImage({ id, addMessage }) {
   };
 
   return (
-    <div className="replace-menu">
+    <span className={`replace-menu ${menuStyle}`}>
       <label htmlFor={`replace-${id}`} className="replace-button">
         Remplacer
       </label>
@@ -62,6 +62,6 @@ export default function ReplaceImage({ id, addMessage }) {
           ✓
         </button>
       )}
-    </div>
+    </span>
   );
 }

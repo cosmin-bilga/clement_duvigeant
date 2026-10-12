@@ -80,6 +80,7 @@ function Chauffage({ addMessage }) {
               <ReplaceImage
                 id={photos["chauffage.main"].id}
                 addMessage={addMessage}
+                menuStyle={"menu-hover-center"}
               />
             )}
           </div>
