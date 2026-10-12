@@ -1,7 +1,9 @@
 import "./index.css";
+import { useContent } from "../../contexts/ContentContext";
 
 export default function Card({ review = null, photo = null, addMessage }) {
   const isConnected = !!localStorage.getItem("token");
+  const { refreshContent } = useContent();
 
   const removeImage = async (id) => {
     try {
@@ -20,6 +22,7 @@ export default function Card({ review = null, photo = null, addMessage }) {
         throw new Error(data.message || "Photo deletion failed");
       }
 
+      await refreshContent();
       addMessage("Photo supprimé avec succes.");
     } catch (error) {
       console.error(error);
@@ -27,8 +30,8 @@ export default function Card({ review = null, photo = null, addMessage }) {
   };
 
   if (review && isConnected) {
-    return(
-       <div className="review-card-admin">
+    return (
+      <div className="review-card-admin">
         <p>{review.user_name}</p>
         <img src={review.user_thumbnail} alt="user profile picture" />
         <p>{review.date}</p>

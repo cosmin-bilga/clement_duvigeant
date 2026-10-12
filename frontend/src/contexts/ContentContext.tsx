@@ -1,4 +1,10 @@
-import { useEffect, useState, createContext, useContext } from "react";
+import {
+  useEffect,
+  useState,
+  createContext,
+  useContext,
+  useCallback,
+} from "react";
 import type { ReactNode } from "react";
 
 type ContentItem = {
@@ -19,6 +25,7 @@ type ContentContextType = {
   content: ContentItem[] | null;
   photos: Photos | null;
   slider: PhotoItem[];
+  refreshContent: () => Promise<void>;
 };
 
 type ContentProviderProps = {
@@ -36,75 +43,78 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   const [photos, setPhotos] = useState<Photos | null>(null);
   const [slider, setSlider] = useState<PhotoItem[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [contentResponse, photosResponse] = await Promise.all([
-          fetch(`${import.meta.env.VITE_API_URL}/content/`),
-          fetch(`${import.meta.env.VITE_API_URL}/photos/`),
-        ]);
+  const refreshContent = useCallback(async () => {
+    try {
+      const [contentResponse, photosResponse] = await Promise.all([
+        fetch(`${import.meta.env.VITE_API_URL}/content/`),
+        fetch(`${import.meta.env.VITE_API_URL}/photos/`),
+      ]);
 
-        if (!contentResponse.ok) {
-          throw new Error("Erreur fetch content");
-        }
-
-        if (!photosResponse.ok) {
-          throw new Error("Erreur fetch photos");
-        }
-
-        const [contentData, photosData] = await Promise.all([
-          contentResponse.json(),
-          photosResponse.json(),
-        ]);
-
-        const regularPhotos: Photos = {};
-        const sliderPhotos: PhotoItem[] = [];
-
-        photosData.forEach((photo: PhotoItem) => {
-          if (photo.location === "slider") {
-            sliderPhotos.push(photo);
-          } else {
-            regularPhotos[photo.location] = photo;
-          }
-        });
-
-        setPhotos(regularPhotos);
-        setSlider(sliderPhotos);
-        setContent(contentData);
-
-        localStorage.setItem(
-          "content",
-          JSON.stringify({
-            storedExpiration: Date.now() + 100000000,
-            storedContent: contentData,
-          }),
-        );
-
-        localStorage.setItem(
-          "photos",
-          JSON.stringify({
-            storedExpiration: Date.now() + 100000000,
-            storedContent: regularPhotos,
-          }),
-        );
-
-        localStorage.setItem(
-          "slider",
-          JSON.stringify({
-            storedExpiration: Date.now() + 100000000,
-            storedContent: sliderPhotos,
-          }),
-        );
-      } catch (err) {
-        console.error(err);
+      if (!contentResponse.ok) {
+        throw new Error("Erreur fetch content");
       }
-    };
 
-    fetchData();
+      if (!photosResponse.ok) {
+        throw new Error("Erreur fetch photos");
+      }
+
+      const [contentData, photosData] = await Promise.all([
+        contentResponse.json(),
+        photosResponse.json(),
+      ]);
+
+      const regularPhotos: Photos = {};
+      const sliderPhotos: PhotoItem[] = [];
+
+      photosData.forEach((photo: PhotoItem) => {
+        if (photo.location === "slider") {
+          sliderPhotos.push(photo);
+        } else {
+          regularPhotos[photo.location] = photo;
+        }
+      });
+
+      setPhotos(regularPhotos);
+      setSlider(sliderPhotos);
+      setContent(contentData);
+
+      localStorage.setItem(
+        "content",
+        JSON.stringify({
+          storedExpiration: Date.now() + 100000000,
+          storedContent: contentData,
+        }),
+      );
+
+      localStorage.setItem(
+        "photos",
+        JSON.stringify({
+          storedExpiration: Date.now() + 100000000,
+          storedContent: regularPhotos,
+        }),
+      );
+
+      localStorage.setItem(
+        "slider",
+        JSON.stringify({
+          storedExpiration: Date.now() + 100000000,
+          storedContent: sliderPhotos,
+        }),
+      );
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
   }, []);
 
+  useEffect(() => {
+    refreshContent().catch(() => {});
+  }, [refreshContent]);
+
   return (
-    <ContentContext.Provider value={{ content, photos, slider }}>
+    <ContentContext.Provider
+      value={{ content, photos, slider, refreshContent }}
+    >
       {children}
     </ContentContext.Provider>
   );

@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useContent } from "../../contexts/ContentContext";
 import "./index.css";
 
 export default function AddImage({ location, addMessage }) {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+
+  const { refreshContent } = useContent();
 
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
@@ -33,7 +36,8 @@ export default function AddImage({ location, addMessage }) {
       }
 
       console.log("Uploaded photo:", location);
-      addMessage("Photo ajouté avec succes.");
+      await refreshContent();
+      addMessage("Photo ajoutée avec succès.");
     } catch (error) {
       addMessage("Erreur lors de l'envoi de l'image.");
       console.error(error);
@@ -52,11 +56,7 @@ export default function AddImage({ location, addMessage }) {
         id="file-upload"
       ></input>
       <label htmlFor="file-upload" id="custom-file-upload">
-        {uploading
-          ? "Envoi en cours..."
-          : file
-            ? "Fichier selectionné: " + file.name
-            : "Ajouter une photo"}
+        {uploading ? "Envoi en cours..." : "Ajouter une photo"}
       </label>
     </div>
   );
