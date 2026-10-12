@@ -109,7 +109,7 @@ export default function ChangeText({
         </button>
       </div>
 
-      <EditorContent editor={editor} />
+      <EditorContent editor={editor} className="text" />
 
       <button type="submit">Enregistrer</button>
     </form>
