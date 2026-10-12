@@ -37,7 +37,7 @@ export default function Auth() {
         throw new Error(data.error || "Login failed");
       }
 
-      console.log("Logged in:", data);
+      //console.log("Logged in:", data);
       localStorage.setItem("token", data.token);
       refresh_reviews();
       navigate("/");
