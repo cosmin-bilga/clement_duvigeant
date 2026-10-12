@@ -128,7 +128,7 @@ function Home() {
             <span className="observer" ref={chauffage}></span>
           </div>
           <div className="section">
-            <Chauffage></Chauffage>
+            <Chauffage addMessage={addMessage}></Chauffage>
           </div>
           <div className="test">
             <HomeSlider />

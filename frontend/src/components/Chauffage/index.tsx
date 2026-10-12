@@ -3,54 +3,18 @@ import ReplaceImage from "../ReplaceImage";
 import "./chauffage.css";
 import { useContent } from "../../contexts/ContentContext";
 
-function Chauffage() {
+function Chauffage({ addMessage }) {
   const { content, photos, slider } = useContent();
 
   const token = localStorage.getItem("token");
 
   const isLoggedIn = !!token;
 
-  //if (photos) console.log("photos", photos);
-
-  //if (content) console.log("Content", photos);
   return (
     <div className="chauffage">
       <h2>Chauffage</h2>
       <div className="content">
         <div className="left">
-          {/* <div className="text" data-aos="flip-up" data-aos-duration="2000">
-            <h3>Présentation de notre service d’installation de chauffage</h3>
-            <p>
-              Nous mettons notre expertise à votre service pour vous offrir des
-              installations de chauffage performantes et adaptées à vos besoins,
-              que ce soit pour le gaz, le fioul, le bois ou les pompes à
-              chaleur.
-            </p>
-            <strong>Nos Services</strong>
-            <ul>
-              <li>
-                Installation de Chauffage au Gaz, Fioul et Bois : Nous prenons
-                en charge l’installation complète de votre système de chauffage,
-                de l’étude préalable à la mise en service.
-              </li>
-              <li>
-                Installation de Pompes à Chaleur : Nous installons des pompes à
-                chaleur performantes et écologiques, adaptées à votre logement
-                et à vos besoins énergétiques.
-              </li>
-              <li>
-                Entretien et Réparation : Nous proposons des contrats
-                d’entretien pour prolonger la durée de vie de votre équipement
-                et des interventions rapides en cas de panne.
-              </li>
-              <li>
-                Conseils Personnalisés : Nos experts sont à votre disposition
-                pour vous conseiller et vous aider à choisir la solution la plus
-                adaptée à vos besoins.
-              </li>
-            </ul>
-          </div> */}
-
           {isLoggedIn ? (
             <ChangeText
               location={"homepage.chauffage"}
