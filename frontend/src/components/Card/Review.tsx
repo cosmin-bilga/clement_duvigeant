@@ -26,30 +26,30 @@ export default function Card({ review = null, photo = null, addMessage }) {
     }
   };
 
-  if (review) {
-    return (
-      <div className="review-card">
-        <p>{review.user_name}</p>
-        <img src={review.user_thumbail} alt="user profile picture" />
-        <p>{review.date}</p>
-        <p>{review.snippet}</p>
-        <p>{review.rating}</p>
-        <p>{review.user_link}</p>
-      </div>
-    );
-  }
   if (review && isConnected) {
     return(
        <div className="review-card-admin">
         <p>{review.user_name}</p>
-        <img src={review.user_thumbail} alt="user profile picture" />
+        <img src={review.user_thumbnail} alt="user profile picture" />
         <p>{review.date}</p>
         <p>{review.snippet}</p>
         <p>{review.rating}</p>
-        {/* <p>{review.status}</p> */}
+        <p>{review.status}</p>
         <p>Hello World !</p>
         <button>Valider</button>
         <button>Refuser</button>
+      </div>
+    );
+  }
+  if (review) {
+    return (
+      <div className="review-card">
+        <p>{review.user_name}</p>
+        <img src={review.user_thumbnail} alt="user profile picture" />
+        <p>{review.date}</p>
+        <p>{review.snippet}</p>
+        <p>{review.rating}</p>
+        <p>{review.user_link}</p>
       </div>
     );
   }

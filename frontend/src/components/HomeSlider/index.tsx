@@ -3,7 +3,7 @@ import arrowLeft from "./arrow_left.png";
 import arrowRight from "./arrow_right.png";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import sliders from "../../assets/review.json";
+// import sliders from "../../assets/review.json";
 import Card from "../Card/Review";
 
 export default function HomeSlider() {
@@ -13,6 +13,7 @@ export default function HomeSlider() {
   const [selected, setSelected] = useState(0);
   const [cooldown, setCooldown] = useState(false);
   const touchStartX = useRef(0);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const isConnected = !!localStorage.getItem("token");
 
   const get_review = async () => {
@@ -27,13 +28,10 @@ export default function HomeSlider() {
             method: "GET",
           },
         );
-
         const data = await response.json();
-
         if (!response.ok) {
           throw new Error(data.error || "Echec de récupération des avis");
-        }
-        
+        }        
         return data;        
       } catch (e) {         
         return [];
@@ -46,26 +44,28 @@ export default function HomeSlider() {
           method: "GET",
         },
       );
-
       const data = await response.json();
-
       if (!response.ok) {
         throw new Error(data.error || "Echec de récupération des avis");
       }
       return data;      
     } catch (e) {       
+      console.error("Erreur récupération avis :", e);
       return [];     
     }
   };
   
   useEffect(() => {
-    const use_reviews =  get_review();
-  })
+  get_review().then((data) => {
+    console.log("Avis récupérés :", data);
+    setReviews(data);
+  });
+}, []);
 
   const sortedSlider = useMemo(() => {
     
-    if (!sliders || sliders.length === 0) return [];
-    let listClone = structuredClone(sliders);
+    if (!reviews || reviews.length === 0) return [];
+    let listClone = structuredClone(reviews);
     if (listClone.length === 2) {
       listClone = listClone.concat(structuredClone(listClone));
     }
@@ -74,7 +74,7 @@ export default function HomeSlider() {
       ...item,
       sliderIndex: index,
     }));
-  }, [sliders]);
+  }, [reviews]);
 
   const length = sortedSlider.length;
   const previousIndex = (selected - 1 + length) % length;
@@ -156,7 +156,7 @@ export default function HomeSlider() {
   // if (loading) return <Loader />;
   // if (length === 0) return null;
 
-  const isOriginallyTwoItems = sliders.length === 2;
+  const isOriginallyTwoItems = reviews.length === 2;
   const dotCount = isOriginallyTwoItems ? 2 : length;
   const activeDotIndex = isOriginallyTwoItems ? selected % 2 : selected;
 
@@ -166,11 +166,12 @@ export default function HomeSlider() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
+      <h2>Avis</h2>
       <div className="inner">
         {sortedSlider.map((item) => {
           const { className, style } = getSlideProps(item.sliderIndex);
           return (
-            <div key={item.id} className={className} style={style}>
+            <div key={item.sliderIndex} className={className} style={style}>
               <Card review={item} />
             </div>
           );
