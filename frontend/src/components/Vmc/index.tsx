@@ -71,7 +71,7 @@ function Vmc({ addMessage }) {
               href="https://www.qualit-enr.org/qualifications/ventilation-plus/"
               target="_blank"
               rel="noopener noreferrer"
-              className="logoVentilationLink"
+              className="logoVentilationLink image-container"
             >
               <img
                 src={
@@ -86,6 +86,7 @@ function Vmc({ addMessage }) {
                 <ReplaceImage
                   id={photos["vmc.logo"].id}
                   addMessage={addMessage}
+                  menuStyle="menu-hover-top-right"
                 />
               )}
               {/*   <img
@@ -97,7 +98,7 @@ function Vmc({ addMessage }) {
           </div>
         </div>
         <div className="image" data-aos="fade-left" data-aos-duration="2000">
-          <div className="sdb">
+          <div className="sdb image-container">
             <img
               src={
                 photos?.["vmc.main"]
@@ -111,6 +112,7 @@ function Vmc({ addMessage }) {
               <ReplaceImage
                 id={photos["vmc.main"].id}
                 addMessage={addMessage}
+                menuStyle="menu-hover-top-right"
               />
             )}
             {/*  <img

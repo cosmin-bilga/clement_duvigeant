@@ -66,7 +66,7 @@ function Chauffage({ addMessage }) {
               }}
             />
           )}
-          <div>
+          <div className="image-container">
             <img
               src={
                 photos?.["chauffage.main"]
@@ -86,7 +86,11 @@ function Chauffage({ addMessage }) {
           </div>
         </div>
         <div className="images">
-          <div data-aos="fade-left" data-aos-duration="2000">
+          <div
+            className="image-container"
+            data-aos="fade-left"
+            data-aos-duration="2000"
+          >
             <img
               src={
                 photos?.["chauffage.side1"]
@@ -100,6 +104,7 @@ function Chauffage({ addMessage }) {
               <ReplaceImage
                 id={photos["chauffage.side1"].id}
                 addMessage={addMessage}
+                menuStyle={"menu-hover-top-right"}
               />
             )}
             {/*  <img
@@ -112,6 +117,7 @@ function Chauffage({ addMessage }) {
             data-aos="fade-left"
             data-aos-duration="2000"
             data-aos-delay="300"
+            className="image-container"
           >
             <img
               src={
@@ -126,6 +132,7 @@ function Chauffage({ addMessage }) {
               <ReplaceImage
                 id={photos["chauffage.side2"].id}
                 addMessage={addMessage}
+                menuStyle={"menu-hover-top-right"}
               />
             )}
             {/* <img
@@ -152,6 +159,7 @@ function Chauffage({ addMessage }) {
               <ReplaceImage
                 id={photos["chauffage.side3"].id}
                 addMessage={addMessage}
+                menuStyle={"menu-hover-top-right"}
               />
             )}
             {/* <img
@@ -167,7 +175,7 @@ function Chauffage({ addMessage }) {
           href="https://www.qualit-enr.org/qualifications/qualipac/"
           target="_blank"
           rel="noopener noreferrer"
-          className="logopac"
+          className="logopac image-container"
         >
           <img
             src={
@@ -181,6 +189,7 @@ function Chauffage({ addMessage }) {
             <ReplaceImage
               id={photos["chauffage.logo1"].id}
               addMessage={addMessage}
+              menuStyle={"menu-hover-top-right"}
             />
           )}
           {/*  <img
@@ -192,7 +201,7 @@ function Chauffage({ addMessage }) {
           href="https://www.qualit-enr.org/qualifications/qualisol/"
           target="_blank"
           rel="noopener noreferrer"
-          className="logosol"
+          className="logosol image-container"
         >
           <img
             src={
@@ -206,6 +215,7 @@ function Chauffage({ addMessage }) {
             <ReplaceImage
               id={photos["chauffage.logo2"].id}
               addMessage={addMessage}
+              menuStyle={"menu-hover-top-right"}
             />
           )}
           {/* <img

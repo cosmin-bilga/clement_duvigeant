@@ -21,7 +21,7 @@ function Climatisation({ addMessage }) {
       <h2>Climatisation</h2>
       <div className="contentDesktop">
         <div className="mobile" data-aos="fade-right" data-aos-duration="2000">
-          <div className="photoClim">
+          <div className="photoClim image-container">
             <img
               src={
                 photos?.["climatisation.main"]
@@ -34,6 +34,7 @@ function Climatisation({ addMessage }) {
               <ReplaceImage
                 id={photos["climatisation.main"].id}
                 addMessage={addMessage}
+                menuStyle={"menu-hover-top-right"}
               />
             )}
             {/*  <img
@@ -137,7 +138,7 @@ function Climatisation({ addMessage }) {
               href="https://www.qualit-enr.org/qualifications/qualisol/"
               target="_blank"
               rel="noopener noreferrer"
-              className="logoVentilationLink"
+              className="logoVentilationLink image-container"
               data-aos="fade-up"
               data-aos-duration="2000"
             >
@@ -161,13 +162,14 @@ function Climatisation({ addMessage }) {
               <ReplaceImage
                 id={photos["climatisation.logo2"].id}
                 addMessage={addMessage}
+                menuStyle={"menu-side"}
               />
             )}
             <a
               href="https://www.socotec.fr//"
               target="_blank"
               rel="noopener noreferrer"
-              className="logoVentilationLink"
+              className="logoVentilationLink image-container"
               data-aos="fade-up"
               data-aos-duration="2000"
             >
@@ -191,6 +193,7 @@ function Climatisation({ addMessage }) {
               <ReplaceImage
                 id={photos["climatisation.logo3"].id}
                 addMessage={addMessage}
+                menuStyle={"menu-side"}
               />
             )}
           </div>
