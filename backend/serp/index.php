@@ -58,9 +58,10 @@ foreach ($reviews as $review) {
         return;
     }
     try {
-        $sql = "INSERT INTO reviews (review_id, user_name, date, rating, snippet, status, user_link, user_thumbnail) VALUES (:review_id, :user_name, :date, :rating, :snippet, :status, :user_link, :user_thumbnail)";
+        $sql = "INSERT INTO reviews (link, review_id, user_name, date, rating, snippet, status, user_link, user_thumbnail) VALUES (:link, :review_id, :user_name, :date, :rating, :snippet, :status, :user_link, :user_thumbnail)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([
+            ":link" => $review["link"],
             ":review_id" => $review["review_id"],
             ":user_name" => $review["user"]["name"],
             ":date" => explode('T', $review['iso_date'])[0],
