@@ -3,23 +3,19 @@ import "./replaceimage.css";
 
 export default function ReplaceImage({ id, addMessage, menuStyle = "" }) {
   const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const handleFileChange = async (e) => {
+    const selectedFile = e.target.files[0];
 
-  const submitImage = async (e) => {
-    e.preventDefault();
+    if (!selectedFile) return;
 
-    if (!file) {
-      console.error("No file selected");
-      addMessage("Veuillez selectionner un fichier.");
-      return;
-    }
+    setFile(selectedFile);
+    setUploading(true);
 
     const formData = new FormData();
     formData.append("id", id);
-    formData.append("photo", file);
+    formData.append("photo", selectedFile);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/`, {
@@ -33,13 +29,13 @@ export default function ReplaceImage({ id, addMessage, menuStyle = "" }) {
       const data = await response.json();
 
       if (!response.ok) {
-        addMessage("Mise a jour de la photo a échoué.");
         throw new Error(data.error || "Photo upload failed");
       }
 
       //console.log("Replaced photo:", id);
       addMessage("Photo remplacée avec succes.");
     } catch (error) {
+      addMessage("Mise a jour de la photo a échoué.");
       console.error(error);
     }
   };
@@ -56,12 +52,6 @@ export default function ReplaceImage({ id, addMessage, menuStyle = "" }) {
         accept="image/jpeg,image/png,image/webp"
         onChange={handleFileChange}
       />
-
-      {file && (
-        <button type="button" className="confirm-replace" onClick={submitImage}>
-          ✓
-        </button>
-      )}
     </span>
   );
 }
