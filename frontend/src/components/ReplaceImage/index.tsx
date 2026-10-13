@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useContent } from "../../contexts/ContentContext";
 import "./replaceimage.css";
 
 export default function ReplaceImage({ id, addMessage, menuStyle = "" }) {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+
+  const { refreshContent } = useContent();
 
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
@@ -33,17 +36,21 @@ export default function ReplaceImage({ id, addMessage, menuStyle = "" }) {
       }
 
       //console.log("Replaced photo:", id);
+      await refreshContent();
       addMessage("Photo remplacée avec succes.");
     } catch (error) {
       addMessage("Mise a jour de la photo a échoué.");
       console.error(error);
+    } finally {
+      setUploading(false);
+      e.target.value = "";
     }
   };
 
   return (
     <span className={`replace-menu ${menuStyle}`}>
       <label htmlFor={`replace-${id}`} className="replace-button">
-        Remplacer
+        {uploading ? "Envoi en cours..." : "🗘"}
       </label>
 
       <input
