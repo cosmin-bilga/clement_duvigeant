@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : mar. 13 oct. 2026 à 09:51
+-- Généré le : mar. 13 oct. 2026 à 12:05
 -- Version du serveur : 11.5.2-MariaDB
 -- Version de PHP : 8.2.26
 
@@ -94,7 +94,7 @@ INSERT INTO `images` (`id`, `name`, `location`) VALUES
 (5, '5145ac91559de7c0271bbec05521dbca.png', 'homepage'),
 (38, '2a839295f20f7157348d07d21d3b3110.png', 'slider'),
 (37, 'a9c3542bc2682a28fb77ea8db1ca2abb.png', 'slider'),
-(11, '7551f3e8c6f377cd02d875198ed5c493.png', 'chauffage.main'),
+(11, '874526f13b35f7a7f2bafb78297b96dc.png', 'chauffage.main'),
 (13, '7e59d43f4c65d8a7bc6fee42fdcdc4b2.jpg', 'chauffage.side1'),
 (14, '226836508ede37baf30dc06f06f7d279.jpg', 'chauffage.side2'),
 (15, '534470b39e2c612dbc59ef2aba31a05c.jpg', 'chauffage.side3'),
