@@ -3,7 +3,7 @@ import { useContent } from "../../contexts/ContentContext";
 import ChangeText from "../ChangeText";
 import ReplaceImage from "../ReplaceImage";
 
-function Vmc() {
+function Vmc({ addMessage }) {
   const { content, photos } = useContent();
 
   const token = localStorage.getItem("token");
@@ -19,6 +19,7 @@ function Vmc() {
             <ChangeText
               location={"homepage.vmc"}
               placeholder={content?.["homepage.vmc"]}
+              addMessage={addMessage}
             />
           ) : (
             <div
@@ -70,7 +71,7 @@ function Vmc() {
               href="https://www.qualit-enr.org/qualifications/ventilation-plus/"
               target="_blank"
               rel="noopener noreferrer"
-              className="logoVentilationLink"
+              className="logoVentilationLink image-container"
             >
               <img
                 src={
@@ -82,7 +83,11 @@ function Vmc() {
                 className="logoVentilation"
               ></img>
               {isLoggedIn && photos?.["vmc.logo"] && (
-                <ReplaceImage id={photos["vmc.logo"].id} />
+                <ReplaceImage
+                  id={photos["vmc.logo"].id}
+                  addMessage={addMessage}
+                  menuStyle="menu-hover-top-right"
+                />
               )}
               {/*   <img
                 src="https://l-araignee.net/ets-clement-duvigeant/assets/ventilation.png"
@@ -93,7 +98,7 @@ function Vmc() {
           </div>
         </div>
         <div className="image" data-aos="fade-left" data-aos-duration="2000">
-          <div className="sdb">
+          <div className="sdb image-container">
             <img
               src={
                 photos?.["vmc.main"]
@@ -104,7 +109,11 @@ function Vmc() {
               className="img"
             ></img>
             {isLoggedIn && photos?.["vmc.main"] && (
-              <ReplaceImage id={photos["vmc.main"].id} />
+              <ReplaceImage
+                id={photos["vmc.main"].id}
+                addMessage={addMessage}
+                menuStyle="menu-hover-top-right"
+              />
             )}
             {/*  <img
               src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/sdb.jpg"

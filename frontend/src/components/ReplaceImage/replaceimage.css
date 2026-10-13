@@ -1,5 +1,4 @@
 .replace-menu {
-  position: static !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,4 +34,35 @@
   background: #2e7d32;
   color: white;
   cursor: pointer;
+}
+
+.menu-hover {
+  width: 2vh;
+  height: 2vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.menu-hover-center {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  z-index: 10;
+}
+.menu-hover-top-right {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.menu-side {
+  display: inline-block;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
 }/*# sourceMappingURL=replaceimage.css.map */

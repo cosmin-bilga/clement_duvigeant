@@ -1,24 +1,24 @@
 import { useState } from "react";
+import { useContent } from "../../contexts/ContentContext";
 import "./replaceimage.css";
 
-export default function ReplaceImage({ id }) {
+export default function ReplaceImage({ id, addMessage, menuStyle = "" }) {
   const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const { refreshContent } = useContent();
 
-  const submitImage = async (e) => {
-    e.preventDefault();
+  const handleFileChange = async (e) => {
+    const selectedFile = e.target.files[0];
 
-    if (!file) {
-      console.error("No file selected");
-      return;
-    }
+    if (!selectedFile) return;
+
+    setFile(selectedFile);
+    setUploading(true);
 
     const formData = new FormData();
     formData.append("id", id);
-    formData.append("photo", file);
+    formData.append("photo", selectedFile);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/`, {
@@ -35,16 +35,22 @@ export default function ReplaceImage({ id }) {
         throw new Error(data.error || "Photo upload failed");
       }
 
-      console.log("Replaced photo:", id);
+      //console.log("Replaced photo:", id);
+      await refreshContent();
+      addMessage("Photo remplacée avec succes.");
     } catch (error) {
+      addMessage("Mise a jour de la photo a échoué.");
       console.error(error);
+    } finally {
+      setUploading(false);
+      e.target.value = "";
     }
   };
 
   return (
-    <div className="replace-menu">
+    <span className={`replace-menu ${menuStyle}`}>
       <label htmlFor={`replace-${id}`} className="replace-button">
-        Remplacer
+        {uploading ? "Envoi en cours..." : "🗘"}
       </label>
 
       <input
@@ -53,12 +59,6 @@ export default function ReplaceImage({ id }) {
         accept="image/jpeg,image/png,image/webp"
         onChange={handleFileChange}
       />
-
-      {file && (
-        <button type="button" className="confirm-replace" onClick={submitImage}>
-          ✓
-        </button>
-      )}
-    </div>
+    </span>
   );
 }

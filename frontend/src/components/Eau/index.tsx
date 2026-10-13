@@ -3,7 +3,7 @@ import { useContent } from "../../contexts/ContentContext";
 import ChangeText from "../ChangeText";
 import ReplaceImage from "../ReplaceImage";
 
-function Eau() {
+function Eau({ addMessage }) {
   const { content, photos } = useContent();
 
   const token = localStorage.getItem("token");
@@ -17,6 +17,7 @@ function Eau() {
         <ChangeText
           location={"homepage.eau"}
           placeholder={content?.["homepage.eau"]}
+          addMessage={addMessage}
         />
       ) : (
         <div
@@ -56,7 +57,11 @@ function Eau() {
         />
       )}
       <div className="images">
-        <div className="img1" data-aos="fade-right" data-aos-duration="2000">
+        <div
+          className="img1 image-container"
+          data-aos="fade-right"
+          data-aos-duration="2000"
+        >
           <img
             src={
               photos?.["eau.main1"]
@@ -65,17 +70,21 @@ function Eau() {
             }
             alt="ballon d'eau chaude"
           ></img>
+          {isLoggedIn && photos?.["eau.main1"] && (
+            <ReplaceImage
+              id={photos["eau.main1"].id}
+              addMessage={addMessage}
+              menuStyle="menu-hover-top-right"
+            />
+          )}
 
           {/* <img
             src="https://l-araignee.net/ets-clement-duvigeant/assets/slider/2.png"
             alt="ballon d'eau chaude"
           ></img> */}
         </div>
-        {isLoggedIn && photos?.["eau.main1"] && (
-          <ReplaceImage id={photos["eau.main1"].id} />
-        )}
         <div
-          className="img2"
+          className="img2 image-container"
           data-aos="fade-right"
           data-aos-duration="2000"
           data-aos-delay="300"
@@ -88,17 +97,21 @@ function Eau() {
             }
             alt="baignoire"
           ></img>
+          {isLoggedIn && photos?.["eau.main2"] && (
+            <ReplaceImage
+              id={photos["eau.main2"].id}
+              addMessage={addMessage}
+              menuStyle="menu-hover-top-right"
+            />
+          )}
 
           {/*  <img
             src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/bain.jpg"
             alt="baignoire"
           ></img> */}
         </div>
-        {isLoggedIn && photos?.["eau.main2"] && (
-          <ReplaceImage id={photos["eau.main2"].id} />
-        )}
         <div
-          className="img3"
+          className="img3 image-container"
           data-aos="fade-right"
           data-aos-duration="2000"
           data-aos-delay="600"
@@ -111,15 +124,19 @@ function Eau() {
             }
             alt="panneau solaire"
           ></img>
+          {isLoggedIn && photos?.["eau.main3"] && (
+            <ReplaceImage
+              id={photos["eau.main3"].id}
+              addMessage={addMessage}
+              menuStyle="menu-hover-top-right"
+            />
+          )}
 
           {/*  <img
             src="https://l-araignee.net/ets-clement-duvigeant/assets/slider/7.png"
             alt="panneau solaire"
           ></img> */}
         </div>
-        {isLoggedIn && photos?.["eau.main3"] && (
-          <ReplaceImage id={photos["eau.main3"].id} />
-        )}
       </div>
       <div className="logo" data-aos="fade-left" data-aos-duration="2000">
         <a
@@ -136,19 +153,24 @@ function Eau() {
             }
             alt="logo rge qualipac"
           ></img>
+          {isLoggedIn && photos?.["eau.logo1"] && (
+            <ReplaceImage
+              id={photos["eau.logo1"].id}
+              addMessage={addMessage}
+              menuStyle="menu-hover-top-right"
+            />
+          )}
           {/* <img
             src="https://l-araignee.net/ets-clement-duvigeant/assets/qualipac.png"
             alt="logo rge qualipac"
           ></img> */}
         </a>
-        {isLoggedIn && photos?.["eau.logo1"] && (
-          <ReplaceImage id={photos["eau.logo1"].id} />
-        )}
+
         <a
           href="https://www.qualit-enr.org/qualifications/qualisol/"
           target="_blank"
           rel="noopener noreferrer"
-          className="logosol"
+          className="logosol image-container"
         >
           <img
             src={
@@ -162,10 +184,14 @@ function Eau() {
             src="https://l-araignee.net/ets-clement-duvigeant/assets/qualisol.png"
             alt="logo rge qualisol"
           ></img> */}
+          {isLoggedIn && photos?.["eau.logo2"] && (
+            <ReplaceImage
+              id={photos["eau.logo2"].id}
+              addMessage={addMessage}
+              menuStyle="menu-hover-top-right"
+            />
+          )}
         </a>
-        {isLoggedIn && photos?.["eau.logo2"] && (
-          <ReplaceImage id={photos["eau.logo2"].id} />
-        )}
       </div>
     </div>
   );

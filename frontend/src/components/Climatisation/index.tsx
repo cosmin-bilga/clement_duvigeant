@@ -6,7 +6,7 @@ import "./climatisation.css";
 import ChangeText from "../ChangeText";
 import ReplaceImage from "../ReplaceImage";
 
-function Climatisation() {
+function Climatisation({ addMessage }) {
   const { content, photos } = useContent();
 
   const token = localStorage.getItem("token");
@@ -21,7 +21,7 @@ function Climatisation() {
       <h2>Climatisation</h2>
       <div className="contentDesktop">
         <div className="mobile" data-aos="fade-right" data-aos-duration="2000">
-          <div className="photoClim">
+          <div className="photoClim image-container">
             <img
               src={
                 photos?.["climatisation.main"]
@@ -31,7 +31,11 @@ function Climatisation() {
               alt="climatisation"
             ></img>
             {isLoggedIn && photos?.["climatisation.main"] && (
-              <ReplaceImage id={photos["climatisation.main"].id} />
+              <ReplaceImage
+                id={photos["climatisation.main"].id}
+                addMessage={addMessage}
+                menuStyle={"menu-hover-top-right"}
+              />
             )}
             {/*  <img
               src="https://l-araignee.net/ets-clement-duvigeant/assets/photos/clim.jpg"
@@ -57,6 +61,7 @@ function Climatisation() {
             <ChangeText
               location={"homepage.climatisation"}
               placeholder={content?.["homepage.climatisation"]}
+              addMessage={addMessage}
             />
           ) : (
             <div
@@ -133,7 +138,7 @@ function Climatisation() {
               href="https://www.qualit-enr.org/qualifications/qualisol/"
               target="_blank"
               rel="noopener noreferrer"
-              className="logoVentilationLink"
+              className="logoVentilationLink image-container"
               data-aos="fade-up"
               data-aos-duration="2000"
             >
@@ -154,13 +159,17 @@ function Climatisation() {
               ></img> */}
             </a>
             {isLoggedIn && photos?.["climatisation.logo2"] && (
-              <ReplaceImage id={photos["climatisation.logo2"].id} />
+              <ReplaceImage
+                id={photos["climatisation.logo2"].id}
+                addMessage={addMessage}
+                menuStyle={"menu-side"}
+              />
             )}
             <a
               href="https://www.socotec.fr//"
               target="_blank"
               rel="noopener noreferrer"
-              className="logoVentilationLink"
+              className="logoVentilationLink image-container"
               data-aos="fade-up"
               data-aos-duration="2000"
             >
@@ -181,7 +190,11 @@ function Climatisation() {
               ></img> */}
             </a>
             {isLoggedIn && photos?.["climatisation.logo3"] && (
-              <ReplaceImage id={photos["climatisation.logo3"].id} />
+              <ReplaceImage
+                id={photos["climatisation.logo3"].id}
+                addMessage={addMessage}
+                menuStyle={"menu-side"}
+              />
             )}
           </div>
         </div>

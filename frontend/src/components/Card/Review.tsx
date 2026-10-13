@@ -1,10 +1,12 @@
 import "./index.css";
 import { useState } from "react";
+import { useContent } from "../../contexts/ContentContext";
 
 export default function Card({ review = null, photo = null, addMessage, onReviewUpdated, }) {
   const isConnected = !!localStorage.getItem("token");
   const [isUpdating, setIsUpdating] = useState(false);
   const MAX_SNIPPET_LENGTH = 150;
+  const { refreshContent } = useContent();
 
   const removeImage = async (id) => {
     try {
@@ -23,6 +25,7 @@ export default function Card({ review = null, photo = null, addMessage, onReview
         throw new Error(data.message || "Photo deletion failed");
       }
 
+      await refreshContent();
       addMessage("Photo supprimé avec succes.");
     } catch (error) {
       console.error(error);
@@ -75,8 +78,8 @@ const truncate = (str: string, maxLength: number) => {
   ) + "…";
 };
   if (review && isConnected) {
-    return(
-       <div className="review-card-admin">
+    return (
+      <div className="review-card-admin">
         <p>{review.user_name}</p>
         <img src={review.user_thumbnail} alt="user profile picture" height="40" width="40"/>
         <p>{review.date}</p>

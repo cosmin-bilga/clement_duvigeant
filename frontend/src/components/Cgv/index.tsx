@@ -1,11 +1,12 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./cgv.css";
-import ReplaceImage from "../ReplaceImage";
+//import ReplaceImage from "../ReplaceImage";
 import { useEffect } from "react";
 import { useContent } from "../../contexts/ContentContext";
+import ChangeText from "../ChangeText";
 
-function Cgv() {
+function Cgv({ addMessage }) {
   const { content, photos, slider } = useContent();
 
   const token = localStorage.getItem("token");
@@ -20,20 +21,22 @@ function Cgv() {
     <div className="cgv">
       <section>
         <h2>Mentions legales</h2>
-        {/*  {isLoggedIn ? (
-                  <ChangeText
-                    location={"cgv1"}
-                    placeholder={content?.["cgv1"]}
-                  />
-                ) : (  */}
-        <div
-          className="text"
-          data-aos="fade-left"
-          data-aos-offset="300"
-          data-aos-easing="ease-in-sine"
-          /*      dangerouslySetInnerHTML={ */
-        >
-          <strong>Editeur</strong>
+        {isLoggedIn ? (
+          <ChangeText
+            location={"mentions_legales"}
+            placeholder={content?.["mentions_legales"]}
+            addMessage={addMessage}
+          />
+        ) : (
+          <div
+            className="text"
+            data-aos="fade-left"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine"
+            dangerouslySetInnerHTML={{
+              __html:
+                content?.["mentions_legales"] ||
+                `<strong>Editeur</strong>
           <p>EI Clément Duvigeant</p>
           <p>11 impasse de la naouco</p>
           <p>81290 Escoussens</p>
@@ -107,8 +110,10 @@ function Cgv() {
           </a>
           <a href="tel:+33672094328">
             <p>tel: 06.72.09.43.28</p>
-          </a>
-        </div>
+          </a>`,
+            }}
+          ></div>
+        )}
       </section>
       <section
         className="section"
@@ -118,8 +123,19 @@ function Cgv() {
         //data-aos-anchor-placement="top-bottom"
       >
         <h2>Conditions Générales de Vente</h2>
-        <div className="text cgvText">
-          <p>
+        {isLoggedIn ? (
+          <ChangeText
+            location={"cgv"}
+            placeholder={content?.["cgv"]}
+            addMessage={addMessage}
+          />
+        ) : (
+          <div
+            className="text cgvText"
+            dangerouslySetInnerHTML={{
+              __html:
+                content?.["cgv"] ||
+                `<p>
             1-Réglementation applicable : Après signature du devis par les deux
             parties, le marché est conclu aux conditions fixées ci- après. Ces
             conditions s’appliquent malgré toute clause contraire figurant sur
@@ -310,8 +326,10 @@ function Cgv() {
             ci-dessus, en joignant un justificatif de son identité valide. En
             cas de réclamation, le client peut contacter la Commission Nationale
             de l’Informatique et des Libertés (CNIL)
-          </p>
-        </div>
+          </p>`,
+            }}
+          ></div>
+        )}
       </section>
     </div>
   );

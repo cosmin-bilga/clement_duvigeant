@@ -1,25 +1,24 @@
 import { useState } from "react";
+import { useContent } from "../../contexts/ContentContext";
 import "./index.css";
 
 export default function AddImage({ location, addMessage }) {
   const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const { refreshContent } = useContent();
 
-  const submitImage = async (e) => {
-    e.preventDefault();
+  const handleFileChange = async (e) => {
+    const selectedFile = e.target.files[0];
 
-    if (!file) {
-      console.error("No file selected");
-      addMessage("Pas de fichier selectionné.");
-      return;
-    }
+    if (!selectedFile) return;
+
+    setFile(selectedFile);
+    setUploading(true);
 
     const formData = new FormData();
     formData.append("location", location);
-    formData.append("photo", file);
+    formData.append("photo", selectedFile);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/`, {
@@ -33,19 +32,23 @@ export default function AddImage({ location, addMessage }) {
       const data = await response.json();
 
       if (!response.ok) {
-        addMessage("Erreur lors de l'envoi de l'image.");
         throw new Error(data.error || "Photo upload failed");
       }
 
       console.log("Uploaded photo:", location);
-      addMessage("Photo ajouté avec succes.");
+      await refreshContent();
+      addMessage("Photo ajoutée avec succès.");
     } catch (error) {
+      addMessage("Erreur lors de l'envoi de l'image.");
       console.error(error);
+    } finally {
+      setUploading(false);
+      e.target.value = "";
     }
   };
 
   return (
-    <form className="add-photo-form">
+    <div className="add-photo-form">
       <input
         type="file"
         onChange={handleFileChange}
@@ -53,11 +56,8 @@ export default function AddImage({ location, addMessage }) {
         id="file-upload"
       ></input>
       <label htmlFor="file-upload" id="custom-file-upload">
-        {file ? "Fichier selectionné: " + file.name : "Choisir une photo"}
+        {uploading ? "Envoi en cours..." : "Ajouter une photo"}
       </label>
-      {file && (
-        <input type="submit" value={"Ajouter"} onClick={submitImage}></input>
-      )}
-    </form>
+    </div>
   );
 }
