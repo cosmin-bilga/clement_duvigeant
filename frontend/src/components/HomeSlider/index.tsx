@@ -3,7 +3,6 @@ import arrowLeft from "./arrow_left.png";
 import arrowRight from "./arrow_right.png";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-// import sliders from "../../assets/review.json";
 import Card from "../Card/Review";
 
 export default function HomeSlider() {
@@ -17,6 +16,7 @@ export default function HomeSlider() {
   const isConnected = !!localStorage.getItem("token");
 
   const get_review = async () => {
+    console.log("isConnected :", isConnected);
      if (isConnected) {
       try {
         const response = await fetch(
@@ -33,7 +33,8 @@ export default function HomeSlider() {
           throw new Error(data.error || "Echec de récupération des avis");
         }        
         return data;        
-      } catch (e) {         
+      } catch (e) { 
+        console.error("Erreur récupération des avis admin :", e);        
         return [];
       }
     }
@@ -53,6 +54,10 @@ export default function HomeSlider() {
       console.error("Erreur récupération avis :", e);
       return [];     
     }
+  };
+  const refreshReviews = async () => {
+    const data = await get_review();
+    setReviews(data);
   };
   
   useEffect(() => {
@@ -172,7 +177,7 @@ export default function HomeSlider() {
           const { className, style } = getSlideProps(item.sliderIndex);
           return (
             <div key={item.sliderIndex} className={className} style={style}>
-              <Card review={item} />
+              <Card review={item} onReviewUpdated={refreshReviews} />
             </div>
           );
         })}
