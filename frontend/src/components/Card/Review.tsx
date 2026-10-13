@@ -1,6 +1,9 @@
-import "./index.css";
 import { useState } from "react";
 import { useContent } from "../../contexts/ContentContext";
+
+import active from "../../assets/review-active.svg"
+import inactive from "../../assets/review-inactive.svg";
+import "./index.css";
 
 export default function Card({ review = null, photo = null, addMessage, onReviewUpdated, }) {
   const isConnected = !!localStorage.getItem("token");
@@ -77,9 +80,22 @@ const truncate = (str: string, maxLength: number) => {
       : portion
   ) + "…";
 };
+const renderStars = (rating: number | string = 0) => {
+  const normalizedRating = Math.max(0, Math.min(Number(rating) || 0, 5));
+  const fullStars = Math.round(normalizedRating);
+
+  return [1, 2, 3, 4, 5].map((star) => (
+    <img
+      key={star}
+      className="review-star-icon"
+      src={star <= fullStars ? active : inactive}
+      alt="avis"
+    />
+  ));
+};
   if (review && isConnected) {
     return (
-      <div className="review-card-admin">
+      <div className={`review-card-admin ${review.status}`}>
         <p>{review.user_name}</p>
         <img src={review.user_thumbnail} alt="user profile picture" height="40" width="40"/>
         <p>{review.date}</p>
@@ -88,7 +104,7 @@ const truncate = (str: string, maxLength: number) => {
           {review.snippet.length > MAX_SNIPPET_LENGTH && (
             <>
             <a
-              href={review.user_link}
+              href={review.link}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -96,8 +112,14 @@ const truncate = (str: string, maxLength: number) => {
             </a>
             </>
           )}
-        </p>
-        <p>{review.rating}</p>
+        </p>        
+        <div 
+          className="review-stars"
+          role="img"
+          aria-label={`Note : ${review.rating} sur 5`}
+        >
+          {renderStars(review.rating)}
+        </div>
         <p>{review.status}</p>
         <button disabled={isUpdating} onClick={() => updateReviewStatus(review.id, "approved")}>{isUpdating ? "Modification..." : "Valider"}</button>
         <button disabled={isUpdating} onClick={() => updateReviewStatus(review.id, "rejected")}>{isUpdating ? "Modification..." : "Refuser"}</button>
@@ -115,7 +137,7 @@ const truncate = (str: string, maxLength: number) => {
           {review.snippet.length > MAX_SNIPPET_LENGTH && (
             <>
             <a
-              href={review.user_link}
+              href={review.link}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -124,7 +146,13 @@ const truncate = (str: string, maxLength: number) => {
             </>
           )}
         </p>
-        <p>{review.rating}</p>
+        <div 
+          className="review-stars"
+          role="img"
+          aria-label={`Note : ${review.rating} sur 5`}
+        >
+          {renderStars(review.rating)}
+        </div>
         <p>{review.user_link}</p>
       </div>
     );
